@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1hgif468uqfe"]
+[gd_scene load_steps=5 format=3 uid="uid://d1hgif468uqfe"]
 
 [ext_resource type="Script" uid="uid://drnwr2tfdtlw" path="res://Map/level.gd" id="1_bllo7"]
 [ext_resource type="PackedScene" uid="uid://dvsaj08fcxom0" path="res://Map/Components/MovingFloor/moving_floor.tscn" id="1_ldbk5"]
+[ext_resource type="PackedScene" uid="uid://c3jxqd0g7vg8n" path="res://Menu/buddy_select.tscn" id="3_0vq05"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bllo7"]
 
@@ -24,3 +25,5 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(0, 64)
 scale = Vector2(55.2897, 0.881919)
 shape = SubResource("RectangleShape2D_bllo7")
+
+[node name="BuddySelect" parent="." instance=ExtResource("3_0vq05")]

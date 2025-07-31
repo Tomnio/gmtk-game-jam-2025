@@ -3,5 +3,11 @@ class_name Level
 
 @onready var player_bp = preload("res://Player/player.tscn")
 
-func spawn_player(player):
+func _ready() -> void:
+	Game.level = self
+	Game.start_run()
+
+func spawn_player(player: Player):
+	print(player)
+	player.position = $Spawnpoint.position
 	self.add_child(player)
