@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3jxqd0g7vg8n"]
+
+[ext_resource type="Script" uid="uid://bhgsswyo8m4ks" path="res://Menu/buddy_select.gd" id="1_e5imy"]
+[ext_resource type="Texture2D" uid="uid://dhsyos3ckwud2" path="res://Player/Player_rotze.png" id="1_sog4m"]
+
+[node name="BuddySelect" type="CanvasLayer"]
+script = ExtResource("1_e5imy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Who you hanging out with?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pedda:"
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_sog4m")
+
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

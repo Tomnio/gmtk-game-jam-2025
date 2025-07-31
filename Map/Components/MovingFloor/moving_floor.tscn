@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvsaj08fcxom0"]
+
+[ext_resource type="Script" uid="uid://duyqe7v6sk5vw" path="res://Map/Components/MovingFloor/moving_floor.gd" id="1_e7op1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6voun"]
+size = Vector2(78, 6)
+
+[node name="MovingFloor" type="AnimatableBody2D"]
+script = ExtResource("1_e7op1")
+point_b = Vector2(100, 0)
+speed = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6voun")
