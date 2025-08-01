@@ -107,5 +107,3 @@ hframes = 2
 libraries = {
 &"": SubResource("AnimationLibrary_gwnis")
 }
-
-[node name="Camera2D" type="Camera2D" parent="."]

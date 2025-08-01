@@ -11,13 +11,15 @@ var last_movement_iteration : Array
 var _animation_player
 @onready var _sprite := $Sprite
 
-
 func _ready() -> void:
-	say_hi()
+	pass
 
+var input
 func _physics_process(delta: float) -> void:
-	var input = get_input()
-	last_movement_iteration.append(input)
+	if active:
+		input = get_input()
+	elif last_movement_iteration.size() > Game.level_frame_counter:
+		last_movement_iteration[Game.level_frame_counter]
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -34,13 +36,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 
-func say_hi():
-	print("hi")
-
 func get_input() -> Dictionary:
-	var buttons = get_pressed_buttons()
-	var movement = get_movement()
-	return {"buttons": buttons, "movement": movement}
+	var input = {"buttons": get_pressed_buttons(), "movement": get_movement()}
+	last_movement_iteration.append(input)
+	return input
 
 func get_movement() -> Vector2:
 	var movement: Vector2
@@ -65,11 +64,10 @@ var moves := {
 }
 
 func get_pressed_buttons() -> Dictionary:
-	if not active:
-		return moves
+	var current_moves = {}  # Create fresh each time
 	for button in moves:
-		moves[button] = Input.is_action_just_pressed("ui_" + button)
-	return moves
+		current_moves[button] = Input.is_action_just_pressed("ui_" + button)
+	return current_moves
 
 func get_active_controller_id() -> int:
 	if active_controller_id != -1:

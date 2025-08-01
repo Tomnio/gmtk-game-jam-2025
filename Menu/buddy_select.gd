@@ -16,15 +16,21 @@ func _ready() -> void:
 	}
 	load_buddies()
 
-func _on_confirm_button_pressed() -> void:
-	pass # Replace with function body.
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		self.show()
 
-func load_buddies(buddy_dict: Dictionary = Game.buddy_dict):
-	for i in buddy_dict:
+func _on_confirm_button_pressed() -> void:
+	Game.start_run()
+	self.hide()
+	pass
+
+func load_buddies(buddy_array: Array = Game.selected_buddies):
+	for i in buddy_array:
 		add_buddy(i)
 
 func add_buddy(bud):
 	var new_buddy = buddy_panel_bp.instantiate()
-	new_buddy.buddy_name = bud
-	new_buddy.buddy_texture = buddy_texture_dict[bud]
+	new_buddy.buddy_name = bud.name
+	new_buddy.buddy_texture = buddy_texture_dict[bud.name.to_lower()]
 	container.add_child(new_buddy)
