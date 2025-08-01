@@ -4,6 +4,7 @@ extends Node2D
 @onready var button_container: VBoxContainer = $VBoxContainer
 @onready var peete_bp := preload("res://Player/peete.tscn")
 @onready var katze_bp := preload("res://Player/katze.tscn")
+@onready var fliege_bp := preload("res://Player/fliege.tscn")
 
 var buddy_scene_dict : Dictionary
 var buddy_list : Array
@@ -13,6 +14,7 @@ var buddy_list : Array
 func _ready() -> void:
 	buddy_scene_dict = {
 		"peete": peete_bp,
+		"fliege": fliege_bp,
 		"katze": katze_bp
 		}
 	create_buddy_buttons()

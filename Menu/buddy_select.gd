@@ -6,12 +6,14 @@ class_name BuddySelect
 
 @onready var katze_texture := preload("res://Player/Katze.png")
 @onready var peete_texture := preload("res://Player/Player_rotze.png")
+@onready var fliege_texture := preload("res://Player/Fliege.png")
 
 var buddy_texture_dict : Dictionary
 
 func _ready() -> void:
 	buddy_texture_dict = {
 	"katze": katze_texture,
+	"fliege": fliege_texture,
 	"peete": peete_texture
 	}
 	load_buddies()

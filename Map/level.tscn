@@ -29,5 +29,5 @@ shape = SubResource("RectangleShape2D_bllo7")
 [node name="BuddySelect" parent="." instance=ExtResource("3_0vq05")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -104)
-zoom = Vector2(2, 2)
+position = Vector2(0, -51)
+zoom = Vector2(2.8, 2.8)

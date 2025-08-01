@@ -1,30 +1,29 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 var active_controller_id: int = -1
 var active := true
+var current_state := "idle" 
 
 var last_movement_iteration : Array
 
 var _animation_player
 @onready var _sprite := $Sprite
 
-func _ready() -> void:
-	pass
-
 func reset_for_new_run():
-	# Clear recorded inputs when starting fresh (only for active player)
 	if active:
 		last_movement_iteration.clear()
 
 func clear_recording():
-	# Force clear recordings (used when re-recording a buddy)
 	last_movement_iteration.clear()
 
 var input
 func _physics_process(delta: float) -> void:
+	if current_state == "hover":
+		play_ability()
+		return
 	if active:
 		input = get_input()
 	elif last_movement_iteration.size() > Game.level_frame_counter:
@@ -33,8 +32,10 @@ func _physics_process(delta: float) -> void:
 		# No more recorded input, use default empty input
 		input = {"buttons": {}, "movement": Vector2.ZERO}
 
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	if input.has("buttons") and input["buttons"].has("ability") and input["buttons"]["ability"]:
+		play_ability()
+		return
+		
 
 	# Handle jump.
 	if input.has("buttons") and input["buttons"].has("accept") and input["buttons"]["accept"] and is_on_floor():
@@ -46,7 +47,17 @@ func _physics_process(delta: float) -> void:
 		velocity.x = input["movement"].x * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	print(_animation_player.current_animation)
+		
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	if _animation_player.current_animation == "hover":
+		velocity.y = 0
+
 	move_and_slide()
+
+func play_ability():
+	pass
 
 func get_input() -> Dictionary:
 	var current_input = {"buttons": get_pressed_buttons(), "movement": get_movement()}
@@ -57,7 +68,7 @@ func get_movement() -> Vector2:
 	var movement: Vector2
 	movement = Vector2(
 		Input.get_axis("ui_left", "ui_right"),
-		Input.get_axis("ui_up", "ui_accept")
+		Input.get_axis("ui_up", "ui_up")
 	)
 	if movement.length() <= 0:
 		var id = get_active_controller_id()
@@ -73,6 +84,7 @@ var moves := {
 	"accept": 0,
 	"left": 0,
 	"right": 0,
+	"ability": 0,
 }
 
 func get_pressed_buttons() -> Dictionary:

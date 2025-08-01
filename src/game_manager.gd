@@ -52,6 +52,7 @@ func clear_players_from_scene():
 
 func create_player(buddy_name : String):
 	var first_player = buddy_dict[buddy_name].instantiate()
+	first_player.name = buddy_name
 	selected_buddies.append(first_player)
 	return first_player
 
