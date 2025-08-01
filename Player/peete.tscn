@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://k4xkr72wv0xc"]
 
-[ext_resource type="Script" uid="uid://dtgcau7v0h12k" path="res://Player/player.gd" id="1_4ntmi"]
-[ext_resource type="Texture2D" uid="uid://dhsyos3ckwud2" path="res://Player/Player_rotze.png" id="1_l8h54"]
+[ext_resource type="Script" uid="uid://v1ftn4f0yhr5" path="res://Player/peete.gd" id="1_7ktm1"]
+[ext_resource type="Texture2D" uid="uid://dhsyos3ckwud2" path="res://Player/Player_rotze.png" id="2_7pov5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hvfyp"]
 size = Vector2(17, 31)
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_l8h54")]
+"values": [ExtResource("2_7pov5")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -59,7 +59,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_l8h54")]
+"values": [ExtResource("2_7pov5")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -92,15 +92,15 @@ _data = {
 &"run": SubResource("Animation_4ntmi")
 }
 
-[node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_4ntmi")
+[node name="Peete" type="CharacterBody2D"]
+script = ExtResource("1_7ktm1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 0.5)
 shape = SubResource("RectangleShape2D_hvfyp")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_l8h54")
+texture = ExtResource("2_7pov5")
 hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

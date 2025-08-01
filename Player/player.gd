@@ -1,9 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-var ID
-
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var active_controller_id: int = -1
@@ -11,7 +8,7 @@ var active := true
 
 var last_movement_iteration : Array
 
-@onready var _animation_player := $AnimationPlayer
+var _animation_player
 @onready var _sprite := $Sprite
 
 

@@ -9,4 +9,4 @@ func _on_start_button_pressed() -> void:
 func _on_add_buddy_button_pressed() -> void:
 	Game.buddy_counter += 1
 	label.text = str(Game.buddy_counter)
-	pass # Replace with function body.
+	pass

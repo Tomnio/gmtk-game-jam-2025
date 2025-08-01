@@ -1,8 +1,6 @@
 extends Node2D
 class_name Level
 
-@onready var player_bp = preload("res://Player/player.tscn")
-
 func _ready() -> void:
 	Game.level = self
 	Game.start_run()

@@ -1,16 +1,20 @@
 extends PanelContainer
 
+@onready var texture = $VBoxContainer/TextureRect
+@onready var button = $VBoxContainer/Button
+var buddy_texture
+var buddy_name
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("hello im buddy")
-	pass # Replace with function body.
+	texture.texture = buddy_texture
+	button.text = buddy_name
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 
 func _on_button_pressed() -> void:
-	pass # Replace with function body.
+	Game.create_player(buddy_name)
+	pass

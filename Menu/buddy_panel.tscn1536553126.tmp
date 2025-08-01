@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ui0o2o6vhob2"]
+
+[ext_resource type="Script" uid="uid://bupcr4msebtrp" path="res://Menu/buddy_panel.gd" id="1_ecym0"]
+[ext_resource type="Texture2D" uid="uid://dhsyos3ckwud2" path="res://Player/Player_rotze.png" id="1_f1vt8"]
+
+[node name="PanelContainer" type="PanelContainer"]
+script = ExtResource("1_ecym0")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Pedda:"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_f1vt8")
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
