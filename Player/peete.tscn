@@ -1,7 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://k4xkr72wv0xc"]
+[gd_scene load_steps=14 format=3 uid="uid://k4xkr72wv0xc"]
 
-[ext_resource type="Script" uid="uid://v1ftn4f0yhr5" path="res://Player/peete.gd" id="1_7ktm1"]
+[ext_resource type="Script" uid="uid://cnmmunb1kl38r" path="res://src/new_player.gd" id="1_hucks"]
 [ext_resource type="Texture2D" uid="uid://dhsyos3ckwud2" path="res://Player/Player_rotze.png" id="2_7pov5"]
+[ext_resource type="Script" uid="uid://dii64y5t2ddg4" path="res://Player/state_machine.gd" id="3_7pov5"]
+[ext_resource type="Script" uid="uid://cs8sqsnsxsm45" path="res://src/state_machine/idle.gd" id="4_hucks"]
+[ext_resource type="Script" uid="uid://c1qpdlo8cut1c" path="res://src/state_machine/jump.gd" id="5_k57jn"]
+[ext_resource type="Script" uid="uid://ycbk1ryxlt8n" path="res://src/state_machine/fall.gd" id="6_07i07"]
+[ext_resource type="Script" uid="uid://dh2nysnt3bd0" path="res://src/state_machine/run.gd" id="7_kc8fa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hvfyp"]
 size = Vector2(17, 31)
@@ -44,6 +49,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.46875, 0.53125)]
+}
 
 [sub_resource type="Animation" id="Animation_4ntmi"]
 resource_name = "run"
@@ -85,21 +114,68 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.46875, 0.53125)]
+}
+
+[sub_resource type="Animation" id="Animation_hucks"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_07i07"]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36, 0.78),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -6.28319, 6.28319]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gwnis"]
 _data = {
 &"RESET": SubResource("Animation_btcbx"),
+&"fall": SubResource("Animation_07i07"),
+&"idle": SubResource("Animation_hucks"),
 &"run": SubResource("Animation_4ntmi")
 }
 
 [node name="Peete" type="CharacterBody2D"]
-script = ExtResource("1_7ktm1")
+script = ExtResource("1_hucks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 0.5)
 shape = SubResource("RectangleShape2D_hvfyp")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(1, -5.5)
+scale = Vector2(1.46875, 0.53125)
 texture = ExtResource("2_7pov5")
 hframes = 2
 
@@ -107,3 +183,29 @@ hframes = 2
 libraries = {
 &"": SubResource("AnimationLibrary_gwnis")
 }
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_7pov5")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_hucks")
+metadata/_custom_type_script = "uid://cs8sqsnsxsm45"
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("5_k57jn")
+metadata/_custom_type_script = "uid://c1qpdlo8cut1c"
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("6_07i07")
+metadata/_custom_type_script = "uid://ycbk1ryxlt8n"
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("7_kc8fa")
+metadata/_custom_type_script = "uid://dh2nysnt3bd0"
+
+[node name="Label" type="Label" parent="StateMachine"]
+offset_left = -19.0
+offset_top = -38.0
+offset_right = 21.0
+offset_bottom = -15.0

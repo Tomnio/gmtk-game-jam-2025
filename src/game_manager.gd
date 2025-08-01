@@ -30,7 +30,7 @@ func start_run():
 	# Spawn all buddies that either have recordings or are the current controlled buddy
 	for i in range(selected_buddies.size()):
 		var buddy = selected_buddies[i]
-		var has_recording = buddy.last_movement_iteration.size() > 0
+		var has_recording = buddy.per_frame_input_array.size() > 0
 		var is_current_buddy = i == current_buddy_index
 		
 		# Spawn if it has a recording or is the current buddy
@@ -39,7 +39,7 @@ func start_run():
 			if i == current_buddy_index:
 				# This is the currently controlled buddy
 				buddy.active = true
-				buddy.reset_for_new_run()
+				buddy.clear_recording()
 			else:
 				# This is a buddy with a recording, set it to replay mode
 				buddy.active = false
