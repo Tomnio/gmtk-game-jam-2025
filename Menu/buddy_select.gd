@@ -20,10 +20,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		self.show()
 
-func _on_confirm_button_pressed() -> void:
-	Game.start_run()
-	self.hide()
-	pass
+#func _on_confirm_button_pressed() -> void:
+	#Game.start_run()
+	#self.hide()
+	#pass
 
 func load_buddies(buddy_array: Array = Game.selected_buddies):
 	for i in buddy_array:

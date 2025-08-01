@@ -14,21 +14,33 @@ var _animation_player
 func _ready() -> void:
 	pass
 
+func reset_for_new_run():
+	# Clear recorded inputs when starting fresh (only for active player)
+	if active:
+		last_movement_iteration.clear()
+
+func clear_recording():
+	# Force clear recordings (used when re-recording a buddy)
+	last_movement_iteration.clear()
+
 var input
 func _physics_process(delta: float) -> void:
 	if active:
 		input = get_input()
 	elif last_movement_iteration.size() > Game.level_frame_counter:
-		last_movement_iteration[Game.level_frame_counter]
+		input = last_movement_iteration[Game.level_frame_counter]
+	else:
+		# No more recorded input, use default empty input
+		input = {"buttons": {}, "movement": Vector2.ZERO}
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if input["buttons"]["accept"] and is_on_floor():
+	if input.has("buttons") and input["buttons"].has("accept") and input["buttons"]["accept"] and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	if input["movement"].x:
+	if input.has("movement") and input["movement"].x:
 		_animation_player.play("run")
 		_sprite.scale.x = abs(_sprite.scale.x) * sign(input["movement"].x)
 		velocity.x = input["movement"].x * SPEED
@@ -37,9 +49,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func get_input() -> Dictionary:
-	var input = {"buttons": get_pressed_buttons(), "movement": get_movement()}
-	last_movement_iteration.append(input)
-	return input
+	var current_input = {"buttons": get_pressed_buttons(), "movement": get_movement()}
+	last_movement_iteration.append(current_input)
+	return current_input
 
 func get_movement() -> Vector2:
 	var movement: Vector2

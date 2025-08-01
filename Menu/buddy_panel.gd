@@ -13,12 +13,11 @@ func _ready() -> void:
 	pass
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
 func _on_button_pressed() -> void:
-	Game.set_controlled_player(buddy_name.to_lower())
-	#for buddy in Game.selected_buddies:
-		#level.spawn_player(buddy)
+	# Set which buddy to control and restart level for recording
+	Game.set_controlled_buddy_by_name(buddy_name.to_lower())
 	pass
