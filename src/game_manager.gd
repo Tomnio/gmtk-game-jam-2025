@@ -16,7 +16,6 @@ var player_dict : Dictionary
 
 func _process(_delta: float) -> void:
 	level_frame_counter += 1
-	print(level_frame_counter)
 
 func start_run():
 	level_frame_counter = 0
@@ -28,18 +27,22 @@ func start_run():
 	if selected_buddies.size() == 0:
 		return
 	
-	# Only spawn completed buddies (for replay) and current controlled buddy
-	for i in range(current_buddy_index + 1):
-		if i < selected_buddies.size():
-			var buddy = selected_buddies[i]
+	# Spawn all buddies that either have recordings or are the current controlled buddy
+	for i in range(selected_buddies.size()):
+		var buddy = selected_buddies[i]
+		var has_recording = buddy.last_movement_iteration.size() > 0
+		var is_current_buddy = i == current_buddy_index
+		
+		# Spawn if it has a recording or is the current buddy
+		if has_recording or is_current_buddy:
 			level.spawn_player(buddy)
-			if i < current_buddy_index:
-				# This is a completed buddy, set it to replay mode
-				buddy.active = false
-			else:
+			if i == current_buddy_index:
 				# This is the currently controlled buddy
 				buddy.active = true
 				buddy.reset_for_new_run()
+			else:
+				# This is a buddy with a recording, set it to replay mode
+				buddy.active = false
 
 func clear_players_from_scene():
 	# Remove all players from the scene
@@ -94,10 +97,9 @@ func set_controlled_buddy_by_name(buddy_name: String):
 	if buddy_index != -1:
 		# Set current buddy index to the selected one
 		current_buddy_index = buddy_index
-		# Clear any recordings for this buddy and later ones
-		for i in range(buddy_index, selected_buddies.size()):
-			selected_buddies[i].clear_recording()
-		# Remove completed buddies that come after this index
-		completed_buddies = completed_buddies.slice(0, buddy_index)
+		# Only clear recording for the selected buddy (for re-recording)
+		selected_buddies[buddy_index].clear_recording()
+		# Don't clear other buddies - let them keep their recordings for replay
+		
 		# Restart the level
 		start_run()
