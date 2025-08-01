@@ -1,0 +1,65 @@
+GAME JAM PROJECT - BUDDY REPLAY SYSTEM CONTEXT
+
+OVERVIEW:
+I'm working on a Godot 4 game where you control multiple "buddies" one at a time to solve puzzles cooperatively. The core mechanic is that when you finish controlling one buddy and switch to another, the previous buddy replays all the movements you recorded with them.
+
+CURRENT SYSTEM ARCHITECTURE:
+
+1. GAME MANAGER (src/game_manager.gd):
+   - Manages buddy selection and spawning
+   - Tracks current_buddy_index (which buddy is currently controlled)
+   - selected_buddies array contains all chosen buddies
+   - start_run() spawns buddies that either have recordings or are currently controlled
+   - set_controlled_buddy_by_name() switches control and clears only the selected buddy's recording for re-recording
+
+2. PLAYER SYSTEM (Player/player.gd):
+   - Records all inputs in last_movement_iteration array
+   - When active=true: records new input
+   - When active=false: replays recorded input based on Game.level_frame_counter
+   - Can be re-recorded by clearing the recording and switching control
+
+3. BUDDY SELECTION (Menu/buddy_panel.gd):
+   - UI panels that let you switch control between buddies
+   - Calls Game.set_controlled_buddy_by_name() when clicked
+
+4. LEVEL SYSTEM (Map/level.gd):
+   - Spawns players at spawnpoint with circular offset pattern
+   - Game.start_run() is called when level loads
+
+CURRENT WORKING FEATURES:
+✅ Record with one buddy
+✅ Switch to another buddy (previous replays)
+✅ Switch back to any buddy (others keep replaying)
+✅ Re-record any buddy by selecting them
+✅ Multiple buddies can have recordings simultaneously
+
+GAME LOOP:
+1. Select buddies in main menu
+2. Level loads, first buddy spawns as controllable
+3. Record movements with first buddy
+4. Switch to second buddy via UI panel
+5. First buddy replays while you control second buddy
+6. Continue switching and recording to solve puzzles cooperatively
+7. Each buddy can be re-recorded by selecting them again
+
+NEXT TASK:
+I want to create LEVEL COMPONENTS - reusable scripts like "MovingFloor" that can be added to levels for interactive elements. These should be self-contained components that players can interact with during their recordings.
+
+EXISTING COMPONENT EXAMPLE:
+- MovingFloor (Map/Components/MovingFloor/) - already exists as a template
+
+REQUIREMENTS FOR NEW COMPONENTS:
+- Should be in Map/Components/ folder structure
+- Each component should be self-contained with its own .gd script and .tscn scene
+- Should work with the buddy replay system (components react the same way during replay)
+- Should be easily placeable in levels
+- Don't modify the level design itself, only create the component scripts
+
+TECHNICAL NOTES:
+- Using Godot 4.4.1
+- Game singleton is accessible as "Game"
+- Frame counter available as Game.level_frame_counter
+- Player class extends CharacterBody2D with movement recording system
+- Components should work consistently during both recording and replay phases
+
+Please help me create new level components that fit this system architecture.
