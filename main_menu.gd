@@ -58,7 +58,9 @@ func _on_buddy_button_pressed(buddy_name: String):
 
 func _on_start_button_pressed() -> void:
 	Game.selected_buddies = buddy_list
+	print(Game.selected_buddies[0].active)
 	# Initialize buddy activity - only first one should be active
+	
 	for i in range(Game.selected_buddies.size()):
 		Game.selected_buddies[i].active = (i == 0)
 	# Reset game manager state

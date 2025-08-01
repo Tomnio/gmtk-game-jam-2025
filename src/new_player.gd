@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 var active_controller_id: int = -1
-var active := false
+var active : bool = false
 var inputs : Dictionary:
 	get:
 		if active:
