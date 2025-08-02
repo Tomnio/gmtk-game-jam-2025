@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1hgif468uqfe"]
+[gd_scene load_steps=8 format=3 uid="uid://d1hgif468uqfe"]
 
 [ext_resource type="Script" uid="uid://drnwr2tfdtlw" path="res://Map/level.gd" id="1_bllo7"]
 [ext_resource type="PackedScene" uid="uid://dvsaj08fcxom0" path="res://Map/Components/MovingFloor/moving_floor.tscn" id="1_ldbk5"]
 [ext_resource type="Texture2D" uid="uid://dysygd8ieqy13" path="res://Assets/framed_background.png" id="2_vqrxs"]
 [ext_resource type="PackedScene" uid="uid://c3jxqd0g7vg8n" path="res://Menu/buddy_select.tscn" id="3_0vq05"]
 [ext_resource type="AudioStream" uid="uid://dwb6vuax0am5j" path="res://Assets/Sounds/Music/dark_forest.wav" id="5_ut75f"]
+[ext_resource type="PackedScene" uid="uid://40hvg577syu0" path="res://Map/Components/Kiste/kiste.tscn" id="6_gx3xr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bllo7"]
 
@@ -26,6 +27,8 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(80, 56)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 96)
@@ -49,3 +52,6 @@ text = "press esc to show buddy list"
 stream = ExtResource("5_ut75f")
 volume_db = -20.0
 autoplay = true
+
+[node name="Kiste" parent="." instance=ExtResource("6_gx3xr")]
+position = Vector2(-80, 56)

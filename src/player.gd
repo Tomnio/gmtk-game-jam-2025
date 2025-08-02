@@ -86,3 +86,15 @@ func get_active_controller_id() -> int:
 
 func clear_recording():
 	per_frame_input_array.clear()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Rigidbody"):
+		collision_layer = 2
+		collision_mask = 2
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Rigidbody"):
+		collision_layer = 1
+		collision_mask = 1

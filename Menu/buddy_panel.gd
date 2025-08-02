@@ -18,8 +18,6 @@ func _process(_delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	# Set which buddy to control and restart level for recording
 	Game.set_controlled_buddy_by_name(buddy_name.to_lower())
 	get_parent().get_parent().get_parent().get_parent().hide()
 	get_tree().get_first_node_in_group("level").escape_label.show()
-	pass
