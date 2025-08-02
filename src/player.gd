@@ -98,3 +98,15 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Rigidbody"):
 		collision_layer = 1
 		collision_mask = 1
+
+
+func _on_kistefühler_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Rigidbody"):
+		collision_layer = 2
+		collision_mask = 2
+
+
+func _on_kistefühler_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Rigidbody"):
+		collision_layer = 1
+		collision_mask = 1

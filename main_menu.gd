@@ -1,11 +1,14 @@
 extends Control
 
-@onready var peete_bp := preload("res://Player/peete.tscn")
 @onready var katze_bp := preload("res://Player/katze.tscn")
-@onready var fliege_bp := preload("res://Player/fliege.tscn")
 @onready var katze_texture := preload("res://Player/Katze.png")
+
+@onready var fliege_bp := preload("res://Player/fliege.tscn")
 @onready var fliege_texture := preload("res://Player/Fliege.png")
-@onready var peete_texture := preload("res://Player/Player_rotze.png")
+
+@onready var frosch_bp := preload("res://Player/frosch.tscn")
+@onready var frosch_texture := preload("res://Player/Frosch.png")
+
 
 var buddy_scene_dict : Dictionary
 var buddy_texture_dict : Dictionary
@@ -13,13 +16,13 @@ var buddy_list : Array
 
 func _ready() -> void:
 	buddy_scene_dict = {
-		"peete": peete_bp,
 		"katze": katze_bp,
+		"frosch": frosch_bp,
 		"fliege": fliege_bp
 	}
 	buddy_texture_dict = {
-		"peete": peete_texture,
 		"katze": katze_texture,
+		"frosch": frosch_texture,
 		"fliege": fliege_texture
 	}
 	auto_load_all_buddies()

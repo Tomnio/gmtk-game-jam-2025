@@ -1,29 +1,32 @@
-[gd_scene load_steps=15 format=3 uid="uid://cj5mienam70nw"]
+[gd_scene load_steps=15 format=3 uid="uid://ooyv11mjlhp7"]
 
-[ext_resource type="Script" uid="uid://cnmmunb1kl38r" path="res://src/player.gd" id="1_0xtgo"]
-[ext_resource type="Texture2D" uid="uid://c6m57kq2a6e1n" path="res://Player/Katze.png" id="2_bltdr"]
-[ext_resource type="Script" uid="uid://dii64y5t2ddg4" path="res://Player/state_machine.gd" id="2_mgd3k"]
-[ext_resource type="Script" uid="uid://cs8sqsnsxsm45" path="res://src/state_machine/idle.gd" id="3_0xtgo"]
-[ext_resource type="Script" uid="uid://c1qpdlo8cut1c" path="res://src/state_machine/jump.gd" id="4_6y88t"]
-[ext_resource type="Script" uid="uid://ycbk1ryxlt8n" path="res://src/state_machine/fall.gd" id="5_v5qrc"]
-[ext_resource type="Script" uid="uid://dh2nysnt3bd0" path="res://src/state_machine/run.gd" id="6_4rdrd"]
+[ext_resource type="Script" uid="uid://cnmmunb1kl38r" path="res://src/player.gd" id="1_r37f7"]
+[ext_resource type="Texture2D" uid="uid://dracjgtpod4al" path="res://Player/Frosch.png" id="2_kdv0l"]
+[ext_resource type="Script" uid="uid://dii64y5t2ddg4" path="res://Player/state_machine.gd" id="3_cmjcj"]
+[ext_resource type="Script" uid="uid://cs8sqsnsxsm45" path="res://src/state_machine/idle.gd" id="4_ortn8"]
+[ext_resource type="Script" uid="uid://c1qpdlo8cut1c" path="res://src/state_machine/jump.gd" id="5_bmqhb"]
+[ext_resource type="Script" uid="uid://ycbk1ryxlt8n" path="res://src/state_machine/fall.gd" id="6_2n37g"]
+[ext_resource type="Script" uid="uid://dh2nysnt3bd0" path="res://src/state_machine/run.gd" id="7_ou7am"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hvfyp"]
-size = Vector2(14, 16)
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oem1u"]
+size = Vector2(10, 6)
 
 [sub_resource type="Animation" id="Animation_nvx6x"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(0, 0)]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_0xtgo"]
@@ -31,36 +34,35 @@ resource_name = "fall"
 
 [sub_resource type="Animation" id="Animation_bltdr"]
 resource_name = "idle"
-length = 1.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2i(1, 0), Vector2i(0, 0), Vector2i(1, 0)]
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_8r765"]
 resource_name = "run"
-length = 0.9
+length = 0.48
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.24, 0.48, 0.720092),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+"values": [9, 11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8r765"]
@@ -71,20 +73,24 @@ _data = {
 &"run": SubResource("Animation_8r765")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xtgo"]
-size = Vector2(10, 6)
-
-[node name="Katze" type="CharacterBody2D"]
+[node name="Frosch" type="CharacterBody2D"]
 collision_layer = 3
-script = ExtResource("1_0xtgo")
+script = ExtResource("1_r37f7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hvfyp")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_bltdr")
-hframes = 4
-vframes = 4
+texture = ExtResource("2_kdv0l")
+hframes = 16
+
+[node name="Area2D" type="Area2D" parent="Sprite"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_oem1u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -92,23 +98,23 @@ libraries = {
 }
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("2_mgd3k")
+script = ExtResource("3_cmjcj")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3_0xtgo")
+script = ExtResource("4_ortn8")
 metadata/_custom_type_script = "uid://cs8sqsnsxsm45"
 
 [node name="Jump" type="Node" parent="StateMachine"]
-script = ExtResource("4_6y88t")
+script = ExtResource("5_bmqhb")
 metadata/_custom_type_script = "uid://c1qpdlo8cut1c"
 
 [node name="Fall" type="Node" parent="StateMachine"]
-script = ExtResource("5_v5qrc")
+script = ExtResource("6_2n37g")
 metadata/_custom_type_script = "uid://ycbk1ryxlt8n"
 
 [node name="Run" type="Node" parent="StateMachine"]
-script = ExtResource("6_4rdrd")
+script = ExtResource("7_ou7am")
 metadata/_custom_type_script = "uid://dh2nysnt3bd0"
 
 [node name="Label" type="Label" parent="StateMachine"]
@@ -117,13 +123,6 @@ offset_top = -38.0
 offset_right = 21.0
 offset_bottom = -15.0
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_0xtgo")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_kistefühler_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_kistefühler_2d_body_exited"]
+[connection signal="body_entered" from="Sprite/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Sprite/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
