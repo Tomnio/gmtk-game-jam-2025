@@ -188,7 +188,7 @@ _data = {
 &"run": SubResource("Animation_8r765")
 }
 
-[node name="Fliege" type="CharacterBody2D"]
+[node name="Fliege" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
 script = ExtResource("1_68r1r")
 

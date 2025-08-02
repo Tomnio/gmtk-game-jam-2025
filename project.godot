@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="GTMK game jam 2025"
-run/main_scene="uid://dyyrnmjesjlme"
+run/main_scene="uid://d37wa8j22aafj"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Game="*res://src/game_manager.gd"
+LevelManager="*res://src/level_manager.gd"
 
 [display]
 
@@ -26,6 +27,12 @@ window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+
+[global_group]
+
+Player=""
+Gamecontainer=""
+level=""
 
 [input]
 

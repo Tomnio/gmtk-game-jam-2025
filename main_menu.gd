@@ -59,4 +59,5 @@ func _on_start_button_pressed() -> void:
 	# Reset game manager state
 	Game.current_buddy_index = 0
 	Game.completed_buddies.clear()
-	get_tree().change_scene_to_file("res://Map/level.tscn")
+	self.hide()
+	LevelManager.change_level_to(0)

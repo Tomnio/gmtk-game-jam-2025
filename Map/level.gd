@@ -8,7 +8,7 @@ func _ready() -> void:
 	Game.start_run()
 
 func spawn_player(player: Player):
-	# Remove player from scene if already there to avoid duplicates
+	print("spawning")
 	if player.get_parent():
 		player.get_parent().remove_child(player)
 	

@@ -1,23 +1,23 @@
 extends Node2D
 class_name GameManager
 
-var buddy_dict : Dictionary
+static var buddy_dict : Dictionary
 
-var level_frame_counter := 0
+static var level_frame_counter := 0
 
-var level
+static var level
 static var spawnpoint
-var selected_buddies : Array
-var completed_buddies : Array  # Buddies that have finished their recording
-var current_buddy_index := 0   # Index of currently controlled buddy
-var buddy_counter = 0
+static var selected_buddies : Array
+static var completed_buddies : Array  # Buddies that have finished their recording
+static var current_buddy_index := 0   # Index of currently controlled buddy
+static var buddy_counter = 0
 
-var player_dict : Dictionary
+static var player_dict : Dictionary
 
 func _process(_delta: float) -> void:
 	level_frame_counter += 1
 
-func start_run():
+static func start_run():
 	level_frame_counter = 0
 	
 	# Clear all players from the scene first
@@ -35,6 +35,7 @@ func start_run():
 		
 		# Spawn if it has a recording or is the current buddy
 		if has_recording or is_current_buddy:
+			print(level)
 			level.spawn_player(buddy)
 			if i == current_buddy_index:
 				# This is the currently controlled buddy
@@ -44,7 +45,7 @@ func start_run():
 				# This is a buddy with a recording, set it to replay mode
 				buddy.active = false
 
-func clear_players_from_scene():
+static func clear_players_from_scene():
 	# Remove all players from the scene
 	for buddy in selected_buddies:
 		if buddy.get_parent():

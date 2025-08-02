@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://40hvg577syu0"]
 
-[ext_resource type="Texture2D" uid="uid://bav7bso8fegru" path="res://Map/Components/Kiste/Truhe.png" id="1_k2r50"]
+[ext_resource type="Texture2D" uid="uid://cexleg7qlycdo" path="res://Map/Components/Kiste/Barrel.png" id="1_k2r50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3um33"]
 
@@ -13,4 +13,3 @@ shape = SubResource("RectangleShape2D_3um33")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_k2r50")
-hframes = 2

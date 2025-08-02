@@ -7,8 +7,8 @@ var inputs : Dictionary:
 	get:
 		if active:
 			return inputs
-		elif per_frame_input_array.size() > Game.level_frame_counter:
-			return per_frame_input_array[Game.level_frame_counter]
+		elif per_frame_input_array.size() > GameManager.level_frame_counter:
+			return per_frame_input_array[GameManager.level_frame_counter]
 		else:
 			return {"buttons": {}, "movement": Vector2.ZERO}
 
@@ -34,9 +34,9 @@ func _physics_process(delta: float) -> void:
 var last_gen
 func generate_input() -> Dictionary:
 	var current_input = {"buttons": get_pressed_buttons(), "movement": get_movement()}
-	if not last_gen == Game.level_frame_counter:
+	if not last_gen == GameManager.level_frame_counter:
 		per_frame_input_array.append(current_input)
-	last_gen = Game.level_frame_counter
+	last_gen = GameManager.level_frame_counter
 	return current_input
 
 func get_movement() -> Vector2:
