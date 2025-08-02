@@ -14,6 +14,7 @@ var inputs : Dictionary:
 
 var SPEED := 150.0
 var JUMP_VELOCITY = -250
+var JUMP_BOOST := 1
 
 var per_frame_input_array : Array
 
@@ -57,6 +58,7 @@ var moves := {
 	"up": 0,
 	"down": 0,
 	"accept": 0,
+	"ability": 0,
 	"left": 0,
 	"right": 0,
 }
@@ -65,6 +67,8 @@ func get_pressed_buttons() -> Dictionary:
 	var current_moves = {}  # Create fresh each time
 	for button in moves:
 		current_moves[button] = Input.is_action_just_pressed("ui_" + button)
+		if current_moves[button]:
+			print(button)
 	return current_moves
 
 func get_active_controller_id() -> int:
@@ -86,3 +90,16 @@ func get_active_controller_id() -> int:
 
 func clear_recording():
 	per_frame_input_array.clear()
+
+
+func _on_kistenfühler_body_entered(body: Node2D) -> void:
+	print("oke")
+	if body.is_in_group("Rigidbody"):
+		collision_layer = 1
+		collision_mask = 1
+
+
+func _on_kistenfühler_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Rigidbody"):
+		collision_layer = 2
+		collision_mask = 2

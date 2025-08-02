@@ -11,7 +11,7 @@ func _ready():
 	position = point_a
 	target = point_b
 
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	var movement = (target - position).normalized() * speed * delta
 	if position.distance_to(target) <= speed * delta:
 		# Snap to target and reverse direction

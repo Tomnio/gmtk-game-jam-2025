@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://peyjrfvgltul"]
+
+[ext_resource type="Texture2D" uid="uid://cfo1g0vjtxn7y" path="res://Player/kiste.png" id="1_w48qe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_saffs"]
+size = Vector2(32, 32)
+
+[node name="Kiste" type="RigidBody2D" groups=["Rigidbody"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_w48qe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_saffs")

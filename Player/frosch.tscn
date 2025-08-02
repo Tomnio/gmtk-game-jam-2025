@@ -1,81 +1,53 @@
-[gd_scene load_steps=17 format=3 uid="uid://emc3xm2pfjqa"]
+[gd_scene load_steps=15 format=3 uid="uid://ckxobraqutioo"]
 
-[ext_resource type="Script" uid="uid://cnmmunb1kl38r" path="res://src/player.gd" id="1_68r1r"]
-[ext_resource type="Texture2D" uid="uid://cfck6s0fju1qr" path="res://Player/Fliege.png" id="2_68r1r"]
-[ext_resource type="Script" uid="uid://dii64y5t2ddg4" path="res://Player/state_machine.gd" id="3_1jpgh"]
-[ext_resource type="Script" uid="uid://cs8sqsnsxsm45" path="res://src/state_machine/idle.gd" id="4_40i1u"]
-[ext_resource type="Script" uid="uid://c1qpdlo8cut1c" path="res://src/state_machine/jump.gd" id="5_hpklc"]
-[ext_resource type="Script" uid="uid://ycbk1ryxlt8n" path="res://src/state_machine/fall.gd" id="6_cla7l"]
-[ext_resource type="Script" uid="uid://dh2nysnt3bd0" path="res://src/state_machine/run.gd" id="7_ehnx0"]
-[ext_resource type="Script" uid="uid://jxlgnhiy1rbj" path="res://src/state_machine/hover.gd" id="8_oem1u"]
+[ext_resource type="Texture2D" uid="uid://djchf72hf31cx" path="res://Player/Frosch.png" id="1_7s8ex"]
+[ext_resource type="Script" uid="uid://cxj4sjmiioybl" path="res://Player/frosch.gd" id="1_kdv0l"]
+[ext_resource type="Script" uid="uid://dii64y5t2ddg4" path="res://Player/state_machine.gd" id="3_cmjcj"]
+[ext_resource type="Script" uid="uid://cs8sqsnsxsm45" path="res://src/state_machine/idle.gd" id="4_ortn8"]
+[ext_resource type="Script" uid="uid://c1qpdlo8cut1c" path="res://src/state_machine/jump.gd" id="5_bmqhb"]
+[ext_resource type="Script" uid="uid://ycbk1ryxlt8n" path="res://src/state_machine/fall.gd" id="6_2n37g"]
+[ext_resource type="Script" uid="uid://dh2nysnt3bd0" path="res://src/state_machine/run.gd" id="7_ou7am"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hvfyp"]
 size = Vector2(16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oem1u"]
-size = Vector2(10, 10)
 
 [sub_resource type="Animation" id="Animation_nvx6x"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/path = NodePath("Sprite:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(0, 0)]
+"values": [17]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [9]
+"values": [0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"values": [ExtResource("1_7s8ex")]
 }
 
 [sub_resource type="Animation" id="Animation_0xtgo"]
@@ -136,23 +108,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_bltdr"]
 resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_8r765"]
-resource_name = "run"
-length = 0.48
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -164,7 +120,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [9]
+"values": [16]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -173,10 +129,51 @@ tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.24, 0.36),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.33333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [2, 3, 4, 3]
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_8r765"]
+resource_name = "run"
+length = 0.800003
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_7s8ex")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [9, 10]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8r765"]
@@ -188,26 +185,16 @@ _data = {
 &"run": SubResource("Animation_8r765")
 }
 
-[node name="Fliege" type="CharacterBody2D"]
+[node name="Frosch" type="CharacterBody2D"]
 collision_layer = 3
-script = ExtResource("1_68r1r")
+script = ExtResource("1_kdv0l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hvfyp")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_68r1r")
-hframes = 9
-frame = 3
-
-[node name="Kistenfühler" type="Area2D" parent="Sprite"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Kistenfühler"]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_oem1u")
-debug_color = Color(0, 0.633515, 0.439584, 0.42)
+texture = ExtResource("1_7s8ex")
+hframes = 17
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -215,28 +202,24 @@ libraries = {
 }
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_1jpgh")
+script = ExtResource("3_cmjcj")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("4_40i1u")
+script = ExtResource("4_ortn8")
 metadata/_custom_type_script = "uid://cs8sqsnsxsm45"
 
 [node name="Jump" type="Node" parent="StateMachine"]
-script = ExtResource("5_hpklc")
+script = ExtResource("5_bmqhb")
 metadata/_custom_type_script = "uid://c1qpdlo8cut1c"
 
 [node name="Fall" type="Node" parent="StateMachine"]
-script = ExtResource("6_cla7l")
+script = ExtResource("6_2n37g")
 metadata/_custom_type_script = "uid://ycbk1ryxlt8n"
 
 [node name="Run" type="Node" parent="StateMachine"]
-script = ExtResource("7_ehnx0")
+script = ExtResource("7_ou7am")
 metadata/_custom_type_script = "uid://dh2nysnt3bd0"
-
-[node name="Hover" type="Node" parent="StateMachine"]
-script = ExtResource("8_oem1u")
-metadata/_custom_type_script = "uid://jxlgnhiy1rbj"
 
 [node name="Label" type="Label" parent="StateMachine"]
 offset_left = -19.0
@@ -244,6 +227,4 @@ offset_top = -38.0
 offset_right = 21.0
 offset_bottom = -15.0
 
-[connection signal="body_entered" from="Sprite/Kistenfühler" to="." method="_on_kistenfühler_body_entered"]
-[connection signal="body_exited" from="Sprite/Kistenfühler" to="." method="_on_kistenfühler_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
