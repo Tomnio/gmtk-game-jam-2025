@@ -3,21 +3,21 @@ class_name GameManager
 
 static var buddy_dict : Dictionary
 
-static var level_frame_counter := 0
+var level_frame_counter := 0
 
-static var level
-static var spawnpoint
-static var selected_buddies : Array
-static var completed_buddies : Array  # Buddies that have finished their recording
-static var current_buddy_index := 0   # Index of currently controlled buddy
-static var buddy_counter = 0
+var level
+var spawnpoint
+var selected_buddies : Array
+var completed_buddies : Array  # Buddies that have finished their recording
+var current_buddy_index := 0   # Index of currently controlled buddy
+var buddy_counter = 0
 
 static var player_dict : Dictionary
 
 func _process(_delta: float) -> void:
 	level_frame_counter += 1
 
-static func start_run():
+func start_run():
 	level_frame_counter = 0
 	
 	# Clear all players from the scene first
@@ -35,21 +35,21 @@ static func start_run():
 		
 		# Spawn if it has a recording or is the current buddy
 		if has_recording or is_current_buddy:
-			print(level)
 			level.spawn_player(buddy)
 			if i == current_buddy_index:
-				# This is the currently controlled buddy
 				buddy.active = true
 				buddy.clear_recording()
 			else:
 				# This is a buddy with a recording, set it to replay mode
 				buddy.active = false
 
-static func clear_players_from_scene():
+func clear_players_from_scene():
 	# Remove all players from the scene
 	for buddy in selected_buddies:
 		if buddy.get_parent():
-			buddy.get_parent().remove_child(buddy)
+			var parent = buddy.get_parent()
+			if parent.has_method("remove_child") and buddy in parent.get_children():
+				parent.call_deferred("remove_child", buddy)
 
 func create_player(buddy_name : String):
 	var first_player = buddy_dict[buddy_name].instantiate()

@@ -1,17 +1,14 @@
 extends Node2D
 class_name Level
 
-@onready var escape_label = $escapeLabel
+@onready var escape_label = $escapeLabel if has_node("escapeLabel") else null
 
 func _ready() -> void:
 	Game.level = self
 	Game.start_run()
 
 func spawn_player(player: Player):
-	print("spawning")
-	if player.get_parent():
-		player.get_parent().remove_child(player)
-	
+
 	# Add player to scene
 	self.add_child(player)
 	player.get_node("StateMachine").reset_state()

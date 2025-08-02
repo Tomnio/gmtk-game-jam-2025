@@ -1,18 +1,49 @@
-[gd_scene load_steps=3 format=4 uid="uid://b4aev5edo3day"]
+[gd_scene load_steps=7 format=4 uid="uid://brdn5xmchyw7x"]
 
 [ext_resource type="PackedScene" uid="uid://dc4w106o4qh5t" path="res://Map/Tileset/tile_map_layer.tscn" id="1_0jg4q"]
-[ext_resource type="Script" uid="uid://bkbw63f6cqm3m" path="res://Map/map_2.gd" id="1_honm8"]
+[ext_resource type="PackedScene" uid="uid://c3jxqd0g7vg8n" path="res://Menu/buddy_select.tscn" id="4_xbo3e"]
+[ext_resource type="AudioStream" uid="uid://dwb6vuax0am5j" path="res://Assets/Sounds/Music/dark_forest.wav" id="5_a6was"]
+[ext_resource type="PackedScene" uid="uid://40hvg577syu0" path="res://Map/Components/Kiste/kiste.tscn" id="6_ue56o"]
+[ext_resource type="PackedScene" uid="uid://dt6iikh4mdb2c" path="res://Map/Components/Checkpoints/goal.tscn" id="7_3uhmi"]
 
-[node name="map_2" type="Node2D" groups=["level"]]
-script = ExtResource("1_honm8")
+[sub_resource type="GDScript" id="GDScript_sk5c7"]
+script/source = "extends Level
+"
+
+[node name="Map_2" type="Node2D" groups=["level"]]
+script = SubResource("GDScript_sk5c7")
 
 [node name="Spawnpoint" type="ColorRect" parent="."]
-offset_left = -20.0
-offset_top = -80.0
-offset_right = 20.0
-offset_bottom = -40.0
+offset_left = -24.0
+offset_top = -48.0
+offset_right = 16.0
+offset_bottom = -8.0
+color = Color(1, 0.529412, 1, 1)
+metadata/_edit_use_anchors_ = true
 
-[node name="TileMapLayer" parent="." instance=ExtResource("1_0jg4q")]
-tile_map_data = PackedByteArray("AAD6/wEAAAACAAIAAAD7/wEAAAACAAIAAAD9/wEAAAACAAIAAAD8/wEAAAACAAIAAAD+/wEAAAACAAIAAAAAAAEAAAACAAIAAAD//wEAAAACAAIAAAACAAEAAAACAAIAAAABAAEAAAACAAIAAAAEAAEAAAACAAIAAAADAAEAAAACAAIAAAAFAAAAAAACAAEAAAAGAAAAAAACAAEAAAAHAAAAAAADAAEAAAAHAAEAAAADAAIAAAAGAAEAAAACAAIAAAAFAAEAAAACAAIAAAAEAAAAAAACAAEAAAADAAAAAAACAAEAAAACAAAAAAACAAEAAAABAAAAAAACAAEAAAAAAAAAAAACAAEAAAD//wAAAAACAAEAAAD+/wAAAAACAAEAAAD9/wAAAAACAAEAAAD8/wAAAAACAAEAAAD7/wAAAAACAAEAAAD6/wAAAAACAAEAAAD8/wIAAAACAAMAAAD7/wIAAAACAAMAAAD6/wIAAAACAAMAAAD9/wIAAAACAAMAAAD+/wIAAAACAAMAAAD//wIAAAACAAMAAAAAAAIAAAACAAMAAAABAAIAAAACAAMAAAACAAIAAAACAAMAAAADAAIAAAACAAMAAAAEAAIAAAACAAMAAAAFAAIAAAACAAMAAAAGAAIAAAACAAMAAAAHAAIAAAADAAMAAAD5/wAAAAABAAEAAAD5/wEAAAABAAIAAAD5/wIAAAABAAMAAAA=")
+[node name="BuddySelect" parent="." instance=ExtResource("4_xbo3e")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="escapeLabel" type="Label" parent="."]
+visible = false
+offset_left = -160.0
+offset_top = -88.0
+offset_right = -38.0
+offset_bottom = -75.0
+theme_override_font_sizes/font_size = 9
+text = "press esc to show buddy list"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_a6was")
+volume_db = -20.0
+autoplay = true
+
+[node name="Kiste" parent="." instance=ExtResource("6_ue56o")]
+position = Vector2(-80, 56)
+
+[node name="Goal" parent="." instance=ExtResource("7_3uhmi")]
+position = Vector2(-140, 50)
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_0jg4q")]
+tile_map_data = PackedByteArray("AAD2/wUAAAABAAIAAAD3/wUAAAACAAEAAAD4/wUAAAACAAEAAAD5/wUAAAACAAEAAAD6/wUAAAACAAEAAAD7/wUAAAACAAIAAAD8/wQAAAACAAEAAAD9/wQAAAACAAEAAAD+/wQAAAACAAEAAAD//wQAAAACAAEAAAAAAAQAAAACAAEAAAABAAQAAAACAAEAAAACAAQAAAADAAEAAAADAAUAAAACAAEAAAAEAAUAAAACAAEAAAAFAAUAAAACAAEAAAAGAAUAAAACAAEAAAAHAAUAAAACAAEAAAAIAAUAAAACAAEAAAAJAAUAAAACAAEAAAACAAUAAAACAAIAAAABAAUAAAACAAIAAAAAAAUAAAACAAIAAAD//wUAAAACAAIAAAD+/wUAAAACAAIAAAD9/wUAAAACAAIAAAD8/wUAAAACAAIAAAD2/wYAAAABAAMAAAD3/wYAAAACAAMAAAD5/wYAAAACAAMAAAD4/wYAAAACAAMAAAD6/wYAAAACAAMAAAD7/wYAAAACAAMAAAD8/wYAAAACAAMAAAD9/wYAAAACAAMAAAD+/wYAAAACAAMAAAAKAAUAAAADAAEAAAAKAAYAAAADAAMAAAAJAAYAAAACAAMAAAAIAAYAAAACAAMAAAAHAAYAAAACAAMAAAAGAAYAAAACAAMAAAAFAAYAAAACAAMAAAAEAAYAAAACAAMAAAADAAYAAAACAAMAAAACAAYAAAACAAMAAAABAAYAAAACAAMAAAAAAAYAAAACAAMAAAD//wYAAAACAAMAAAD7/wQAAAABAAEAAAA=")

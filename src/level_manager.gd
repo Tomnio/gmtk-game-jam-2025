@@ -23,14 +23,28 @@ func instantiate_levels():
 		level_list.append(level_instance)
 
 func change_level_to(level: int):
-	if current_level:
-		current_level.get_parent().remove_child(current_level)
+	if current_level and current_level.get_parent():
+		var parent = current_level.get_parent()
+		if parent.has_method("remove_child") and current_level in parent.get_children():
+			parent.call_deferred("remove_child", current_level)
+	
+	# Check bounds to prevent crashes
+	if level >= level_list.size():
+		print("Trying to access level ", level, " but only ", level_list.size(), " levels available")
+		return
+	
+	# Check if game_container exists
+	if not game_container:
+		game_container = get_tree().get_first_node_in_group("Gamecontainer")
+		if not game_container:
+			print("Error: game_container not found!")
+			return
 	
 	current_level_id = level
 	current_level = level_list[level]
-	GameManager.level = current_level
-	game_container.add_child(level_list[level])
+	Game.level = current_level
+	game_container.call_deferred("add_child", level_list[level])
 
 func goal_reached():
 	change_level_to(current_level_id + 1)
-	GameManager.start_run()
+	Game.start_run()

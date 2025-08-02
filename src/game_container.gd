@@ -10,5 +10,6 @@ func _ready() -> void:
 
 func go_back_to_main_menu():
 	for level in get_tree().get_nodes_in_group("level"):
+		print("Removing level from scene")
 		level.get_parent().remove_child(level)
 	main_menu_instance.show()
