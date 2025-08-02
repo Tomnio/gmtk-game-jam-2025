@@ -1,13 +1,14 @@
 extends State
 class_name Jump
 
-var SPEED := 300.0
-var JUMP_VELOCITY = -400
-
 func Enter():
-	player.velocity.y = JUMP_VELOCITY
+	player.velocity.y = player.JUMP_VELOCITY
 	super.Enter()
 
 func Update(_delta):
-	player.velocity.x = inputs["movement"].x * SPEED
+	player.velocity.x = inputs["movement"].x * player.SPEED
+	
+	if inputs.has("buttons") and inputs["buttons"].has("accept") and inputs["buttons"]["accept"]:
+		Transitioned.emit(self, "hover")
+	
 	super.Update(_delta)

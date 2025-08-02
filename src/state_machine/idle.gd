@@ -9,7 +9,7 @@ func Update(_delta):
 	if inputs.has("buttons") and inputs["buttons"].has("accept") and inputs["buttons"]["accept"]:
 		Transitioned.emit(self, "jump")
 	
-	if inputs["movement"].x:
+	if inputs.has("movement") and inputs["movement"].x:
 		Transitioned.emit(self, "run")
 	
 	super.Update(_delta)

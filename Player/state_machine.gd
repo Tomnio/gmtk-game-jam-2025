@@ -11,7 +11,9 @@ func _ready() -> void:
 			states[child.name.to_lower()] = child
 			child.Setup()
 			child.Transitioned.connect(on_child_transitioned)
-			
+	reset_state()
+
+func reset_state():
 	if initial_state:
 		initial_state.Enter()
 		current_state = initial_state

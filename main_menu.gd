@@ -1,11 +1,16 @@
-extends Node2D
+extends Control
 
-@onready var label = $VBoxContainer/Label
-@onready var button_container: VBoxContainer = $VBoxContainer
+@onready var button_container := $VBoxContainer/HBoxContainer
 @onready var peete_bp := preload("res://Player/peete.tscn")
 @onready var katze_bp := preload("res://Player/katze.tscn")
+@onready var fliege_bp := preload("res://Player/fliege.tscn")
+@onready var katze_texture := preload("res://Player/Katze.png")
+@onready var fliege_texture := preload("res://Player/Fliege.png")
+@onready var peete_texture := preload("res://Player/Player_rotze.png")
+
 
 var buddy_scene_dict : Dictionary
+var buddy_texture_dict : Dictionary
 var buddy_list : Array
 
 
@@ -13,7 +18,13 @@ var buddy_list : Array
 func _ready() -> void:
 	buddy_scene_dict = {
 		"peete": peete_bp,
-		"katze": katze_bp
+		"katze": katze_bp,
+		"fliege": fliege_bp
+		}
+	buddy_texture_dict = {
+		"peete": peete_texture,
+		"katze": katze_texture,
+		"fliege": fliege_texture
 		}
 	create_buddy_buttons()
 

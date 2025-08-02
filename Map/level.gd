@@ -12,6 +12,7 @@ func spawn_player(player: Player):
 	
 	# Add player to scene
 	self.add_child(player)
+	player.get_node("StateMachine").reset_state()
 	
 	var player_count = get_children().filter(func(child): return child is Player).size()
 	var offset_distance = 50  # Adjust this value as needed

@@ -12,14 +12,20 @@ var inputs : Dictionary:
 		else:
 			return {"buttons": {}, "movement": Vector2.ZERO}
 
+var SPEED := 150.0
+var JUMP_VELOCITY = -250
+
 var per_frame_input_array : Array
 
 func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	$Sprite.scale.x = abs($Sprite.scale.x) * sign(get_movement().x)
-	pass
+	if inputs.has("movement"):
+		if inputs["movement"].x > 0:
+			$Sprite.scale.x = abs($Sprite.scale.x)
+		elif inputs["movement"].x < 0:
+			$Sprite.scale.x = abs($Sprite.scale.x) * -1
 
 func _physics_process(delta: float) -> void:
 	if active:
