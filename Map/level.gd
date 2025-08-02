@@ -8,8 +8,9 @@ func _ready() -> void:
 	Game.start_run()
 
 func spawn_player(player: Player):
-
 	# Add player to scene
+	if player.get_parent():
+		player.get_parent().remove_child(player)
 	self.add_child(player)
 	player.get_node("StateMachine").reset_state()
 	

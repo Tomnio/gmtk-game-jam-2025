@@ -33,13 +33,6 @@ func change_level_to(level: int):
 		print("Trying to access level ", level, " but only ", level_list.size(), " levels available")
 		return
 	
-	# Check if game_container exists
-	if not game_container:
-		game_container = get_tree().get_first_node_in_group("Gamecontainer")
-		if not game_container:
-			print("Error: game_container not found!")
-			return
-	
 	current_level_id = level
 	current_level = level_list[level]
 	Game.level = current_level
@@ -47,4 +40,3 @@ func change_level_to(level: int):
 
 func goal_reached():
 	change_level_to(current_level_id + 1)
-	Game.start_run()

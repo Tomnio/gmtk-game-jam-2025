@@ -13,11 +13,8 @@ func _ready() -> void:
 	pass
 
 
-func _process(_delta: float) -> void:
-	pass
-
-
 func _on_button_pressed() -> void:
 	Game.set_controlled_buddy_by_name(buddy_name.to_lower())
+	# budy_select below
 	get_parent().get_parent().get_parent().get_parent().hide()
 	level.escape_label.show()

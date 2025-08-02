@@ -29,14 +29,16 @@ func _process(delta: float) -> void:
 	#self.hide()
 	#pass
 
-func load_buddies(buddy_array: Array = Game.selected_buddies):
-	for i in buddy_array:
-		add_buddy(i)
+func load_buddies():
+	# Load available buddy types instead of using selected_buddies array
+	var buddy_names = ["katze", "fliege", "frosch"]
+	for buddy_name in buddy_names:
+		add_buddy_by_name(buddy_name)
 
-func add_buddy(bud):
+func add_buddy_by_name(buddy_name: String):
 	var new_buddy = buddy_panel_bp.instantiate()
-	new_buddy.buddy_name = bud.name
-	new_buddy.buddy_texture = buddy_texture_dict[bud.name.to_lower()]
+	new_buddy.buddy_name = buddy_name
+	new_buddy.buddy_texture = buddy_texture_dict[buddy_name.to_lower()]
 	container.add_child(new_buddy)
 
 
@@ -48,4 +50,7 @@ func create_reset_button():
 	container.add_child(reset_button)
 
 func _on_reset_level_pressed():
+	Game.reset_level()
+	self.hide()
+	get_tree().get_first_node_in_group("level").escape_label.show()
 	Game.reset_level()

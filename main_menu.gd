@@ -25,6 +25,10 @@ func _ready() -> void:
 		"frosch": frosch_texture,
 		"fliege": fliege_texture
 	}
+	
+	# Set up the global buddy dictionary for game manager
+	Game.buddy_dict = buddy_scene_dict
+	
 	auto_load_all_buddies()
 
 # =========== Auto-load all buddies ========== 
@@ -49,15 +53,17 @@ func remove_buddy(buddy_name: String):
 			break
 
 func _on_start_button_pressed() -> void:
+	# Legacy selected_buddies - keeping for now during transition
 	Game.selected_buddies = buddy_list
 	print("Starting with buddies: ", Game.selected_buddies)
 	
-	# Initialize buddy activity - only first one should be active
-	for i in range(Game.selected_buddies.size()):
-		Game.selected_buddies[i].active = (i == 0)
+	# Initialize buddy activity - all inactive until selected from buddy panel
+	for buddy in Game.selected_buddies:
+		buddy.active = false
 	
 	# Reset game manager state
-	Game.current_buddy_index = 0
-	Game.completed_buddies.clear()
+	Game.recorded_buddies.clear()
+	Game.current_buddy = null
+	
 	self.hide()
 	LevelManager.change_level_to(0)
