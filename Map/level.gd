@@ -1,6 +1,8 @@
 extends Node2D
 class_name Level
 
+@onready var escape_label = $escapeLabel
+
 func _ready() -> void:
 	Game.level = self
 	Game.start_run()

@@ -17,10 +17,12 @@ func _ready() -> void:
 	"peete": peete_texture
 	}
 	load_buddies()
+	create_reset_button()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		self.show()
+		get_tree().get_first_node_in_group("level").escape_label.hide()
 
 #func _on_confirm_button_pressed() -> void:
 	#Game.start_run()
@@ -36,3 +38,14 @@ func add_buddy(bud):
 	new_buddy.buddy_name = bud.name
 	new_buddy.buddy_texture = buddy_texture_dict[bud.name.to_lower()]
 	container.add_child(new_buddy)
+
+
+func create_reset_button():
+	var reset_button = Button.new()
+	reset_button.text = "Reset Level"
+	reset_button.name = "reset_level_button"
+	reset_button.pressed.connect(_on_reset_level_pressed)
+	container.add_child(reset_button)
+
+func _on_reset_level_pressed():
+	Game.reset_level()

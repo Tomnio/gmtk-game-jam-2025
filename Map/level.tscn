@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1hgif468uqfe"]
+[gd_scene load_steps=7 format=3 uid="uid://d1hgif468uqfe"]
 
 [ext_resource type="Script" uid="uid://drnwr2tfdtlw" path="res://Map/level.gd" id="1_bllo7"]
 [ext_resource type="PackedScene" uid="uid://dvsaj08fcxom0" path="res://Map/Components/MovingFloor/moving_floor.tscn" id="1_ldbk5"]
 [ext_resource type="Texture2D" uid="uid://dysygd8ieqy13" path="res://Assets/framed_background.png" id="2_vqrxs"]
 [ext_resource type="PackedScene" uid="uid://c3jxqd0g7vg8n" path="res://Menu/buddy_select.tscn" id="3_0vq05"]
+[ext_resource type="AudioStream" uid="uid://dwb6vuax0am5j" path="res://Assets/Sounds/Music/dark_forest.wav" id="5_ut75f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bllo7"]
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" groups=["level"]]
 script = ExtResource("1_bllo7")
 
 [node name="FramedBackground" type="Sprite2D" parent="."]
@@ -34,3 +35,17 @@ shape = SubResource("RectangleShape2D_bllo7")
 [node name="BuddySelect" parent="." instance=ExtResource("3_0vq05")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="escapeLabel" type="Label" parent="."]
+visible = false
+offset_left = -160.0
+offset_top = -88.0
+offset_right = -38.0
+offset_bottom = -75.0
+theme_override_font_sizes/font_size = 9
+text = "press esc to show buddy list"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ut75f")
+volume_db = -20.0
+autoplay = true
