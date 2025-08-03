@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Game="*res://src/game_manager.gd"
 LevelManager="*res://src/level_manager.gd"
+BuddyHandler="*res://src/buddy_handler.gd"
 
 [display]
 

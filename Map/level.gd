@@ -5,7 +5,6 @@ class_name Level
 
 func _ready() -> void:
 	Game.level = self
-	Game.start_run()
 
 func spawn_player(player: Player):
 	# Add player to scene

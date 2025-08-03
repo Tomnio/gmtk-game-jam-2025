@@ -10,11 +10,10 @@ func _ready() -> void:
 	texture.texture = buddy_texture
 	button.text = buddy_name
 	level = get_tree().get_first_node_in_group("level")
-	pass
-
 
 func _on_button_pressed() -> void:
-	Game.set_controlled_buddy_by_name(buddy_name.to_lower())
-	# budy_select below
+	Game.start_run_as(buddy_name.to_lower())
+	
+	# buddy_select below
 	get_parent().get_parent().get_parent().get_parent().hide()
 	level.escape_label.show()

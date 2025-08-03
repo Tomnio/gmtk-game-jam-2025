@@ -1,14 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1hgif468uqfe"]
+[gd_scene load_steps=8 format=4 uid="uid://d1hgif468uqfe"]
 
 [ext_resource type="Script" uid="uid://rvu11pnx6b1n" path="res://Map/map_1.gd" id="1_j3f3d"]
 [ext_resource type="Texture2D" uid="uid://dysygd8ieqy13" path="res://Assets/framed_background.png" id="2_ykyq2"]
-[ext_resource type="PackedScene" uid="uid://dvsaj08fcxom0" path="res://Map/Components/MovingFloor/moving_floor.tscn" id="3_yg31e"]
 [ext_resource type="PackedScene" uid="uid://c3jxqd0g7vg8n" path="res://Menu/buddy_select.tscn" id="4_aog2r"]
 [ext_resource type="AudioStream" uid="uid://dwb6vuax0am5j" path="res://Assets/Sounds/Music/dark_forest.wav" id="5_8lalh"]
 [ext_resource type="PackedScene" uid="uid://40hvg577syu0" path="res://Map/Components/Kiste/kiste.tscn" id="6_0nfuj"]
+[ext_resource type="PackedScene" uid="uid://dc4w106o4qh5t" path="res://Map/Tileset/tile_map_layer.tscn" id="7_yg31e"]
 [ext_resource type="PackedScene" uid="uid://dt6iikh4mdb2c" path="res://Map/Components/Checkpoints/goal.tscn" id="7_ykyq2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bllo7"]
 
 [node name="Map_1" type="Node2D" groups=["level"]]
 script = ExtResource("1_j3f3d")
@@ -17,24 +15,12 @@ script = ExtResource("1_j3f3d")
 texture = ExtResource("2_ykyq2")
 
 [node name="Spawnpoint" type="ColorRect" parent="."]
-offset_left = -24.0
-offset_top = -48.0
-offset_right = 16.0
-offset_bottom = -8.0
+offset_left = -48.0
+offset_top = -24.0
+offset_right = -8.0
+offset_bottom = 16.0
 color = Color(1, 0.529412, 1, 1)
 metadata/_edit_use_anchors_ = true
-
-[node name="MovingFloor" parent="." instance=ExtResource("3_yg31e")]
-position = Vector2(80, 56)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 96)
-scale = Vector2(55.2897, 0.881919)
-shape = SubResource("RectangleShape2D_bllo7")
 
 [node name="BuddySelect" parent="." instance=ExtResource("4_aog2r")]
 
@@ -58,4 +44,7 @@ autoplay = true
 position = Vector2(-80, 56)
 
 [node name="Goal" parent="." instance=ExtResource("7_ykyq2")]
-position = Vector2(-120, 80)
+position = Vector2(-144, 56)
+
+[node name="TileMapLayer" parent="." instance=ExtResource("7_yg31e")]
+tile_map_data = PackedByteArray("AAD2/wUAAgAFAAIAAAD3/wUAAgAGAAIAAAD4/wUAAgAFAAIAAAD5/wUAAgAGAAMAAAD5/wYAAgAGAAMAAAD4/wYAAgAFAAMAAAD3/wYAAgAHAAMAAAD2/wYAAgAFAAMAAAD1/wYAAgAFAAMAAAD6/wYAAgAHAAMAAAD7/wYAAgAFAAMAAAD8/wYAAgAHAAMAAAD9/wYAAgAFAAMAAAD+/wYAAgAGAAMAAAD7/wUAAgAFAAIAAAD8/wUAAgAGAAIAAAD9/wUAAgAGAAMAAAD+/wUAAgAGAAMAAAD//wUAAgAGAAIAAAD6/wQAAgAGAAEAAAD7/wQAAgAFAAEAAAD8/wQAAgAGAAEAAAD9/wQAAgAGAAEAAAD5/wQAAgAGAAEAAAD4/wQAAgAGAAEAAAD3/wQAAgAGAAEAAAD2/wQAAgAFAAEAAAD6/wUAAgAGAAIAAAD//wQAAgAGAAEAAAD+/wQAAgAGAAEAAAAAAAUAAgAGAAMAAAAAAAYAAgAFAAMAAAABAAYAAgAFAAMAAAABAAUAAgAFAAIAAAACAAUAAgAGAAMAAAD//wYAAgAHAAMAAAAAAAQAAgAHAAIAAAABAAQAAgAGAAMAAAABAAMAAgAGAAEAAAACAAMAAgAGAAEAAAACAAQAAgAHAAIAAAADAAQAAgAGAAEAAAAEAAQAAgAGAAEAAAADAAUAAgAGAAMAAAACAAYAAgAGAAMAAAD//wMAAgAFAAMAAAAAAAMAAgAHAAEAAAAEAAUAAgAGAAMAAAAFAAQAAgAFAAMAAAAEAAMAAgAHAAEAAAADAAMAAgAGAAEAAAAFAAUAAgAHAAMAAAAGAAUAAgAFAAMAAAAFAAYAAgAHAAMAAAAEAAYAAgAGAAMAAAADAAYAAgAGAAMAAAA=")
