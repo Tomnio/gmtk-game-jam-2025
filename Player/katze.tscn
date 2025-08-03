@@ -1,6 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://cj5mienam70nw"]
+[gd_scene load_steps=21 format=3 uid="uid://cj5mienam70nw"]
 
-[ext_resource type="Script" uid="uid://cnmmunb1kl38r" path="res://src/player.gd" id="1_0xtgo"]
+[ext_resource type="Script" uid="uid://bkiodjvadeef6" path="res://Player/katze.gd" id="1_6y88t"]
 [ext_resource type="Texture2D" uid="uid://c6m57kq2a6e1n" path="res://Player/Katze.png" id="2_bltdr"]
 [ext_resource type="Script" uid="uid://dii64y5t2ddg4" path="res://Player/state_machine.gd" id="2_mgd3k"]
 [ext_resource type="Script" uid="uid://cs8sqsnsxsm45" path="res://src/state_machine/idle.gd" id="3_0xtgo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://ycbk1ryxlt8n" path="res://src/state_machine/fall.gd" id="5_v5qrc"]
 [ext_resource type="Script" uid="uid://dh2nysnt3bd0" path="res://src/state_machine/run.gd" id="6_4rdrd"]
 [ext_resource type="Script" uid="uid://co64j21chowx0" path="res://src/state_machine/boost.gd" id="8_6y88t"]
+[ext_resource type="AudioStream" uid="uid://rt28co3jlgbi" path="res://Assets/Sounds/schritte.mp3" id="9_v5qrc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hvfyp"]
 size = Vector2(14, 16)
@@ -140,7 +141,7 @@ _data = {
 
 [node name="Katze" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
-script = ExtResource("1_0xtgo")
+script = ExtResource("1_6y88t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hvfyp")
@@ -200,6 +201,9 @@ offset_left = -19.0
 offset_top = -38.0
 offset_right = 21.0
 offset_bottom = -15.0
+
+[node name="WalkAudio" type="AudioStreamPlayer" parent="." groups=["Audioplayer"]]
+stream = ExtResource("9_v5qrc")
 
 [connection signal="body_entered" from="Sprite/Area2D" to="." method="_on_kistefühler_2d_body_entered"]
 [connection signal="body_exited" from="Sprite/Area2D" to="." method="_on_kistefühler_2d_body_exited"]

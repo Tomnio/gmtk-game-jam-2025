@@ -35,6 +35,7 @@ Player=""
 Gamecontainer=""
 level=""
 Spawnpoint=""
+Audioplayer=""
 
 [input]
 

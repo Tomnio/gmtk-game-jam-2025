@@ -3,6 +3,7 @@ class_name State
 
 var player: CharacterBody2D
 var animation_player: AnimationPlayer
+var audiostream_players: Dictionary
 
 var inputs: Dictionary:
 	get:
@@ -15,6 +16,9 @@ signal Transitioned
 func Setup():
 	player = get_parent().get_parent()
 	animation_player = player.get_node("AnimationPlayer")
+	for node in player.get_tree().get_nodes_in_group("Audioplayer"):
+		if player.is_ancestor_of(node):
+			audiostream_players[node.name] = node
 
 func Enter():
 	if animation_player.has_animation(self.name.to_lower()):

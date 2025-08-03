@@ -24,5 +24,5 @@ func Exit():
 func _on_boost_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and body.name.to_lower() != "katze":
 		animation_player.play("boosting")
-		body.JUMP_BOOST_MULT = 2.0
+		body.JUMP_BOOST_MULT = 1.4
 		body.get_node("StateMachine").current_state.overwrite_state("jump")
