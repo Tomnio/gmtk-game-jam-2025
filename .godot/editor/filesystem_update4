@@ -1,0 +1,13 @@
+res://Menu/main_menu.tscn
+res://Player/peete.tscn
+res://Player/fliege.tscn
+res://Player/katze.tscn
+res://Map/level.tscn
+res://Map/Components/MovingFloor/moving_floor.tscn
+res://Player/frosch.tscn
+res://Map/Components/objects/kiste.tscn
+res://Map/Components/MovingFloor/moving_floor.gd
+res://src/state_machine/boost.gd
+res://src/state_machine/idle.gd
+res://src/player.gd
+res://src/state_machine/jump.gd

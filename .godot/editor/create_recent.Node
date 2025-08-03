@@ -1,0 +1,8 @@
+CollisionShape2D
+Area2D
+Boost
+Sprite2D
+RigidBody2D
+CharacterBody2D
+AnimationPlayer
+AnimationTree
