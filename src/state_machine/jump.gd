@@ -2,7 +2,8 @@ extends State
 class_name Jump
 
 func Enter():
-	player.velocity.y = player.JUMP_VELOCITY
+	print("JUMP MULT = " + str(player.JUMP_BOOST_MULT))
+	player.velocity.y = player.JUMP_VELOCITY * player.JUMP_BOOST_MULT
 	super.Enter()
 
 func Update(_delta):
@@ -12,3 +13,7 @@ func Update(_delta):
 		Transitioned.emit(self, "hover")
 	
 	super.Update(_delta)
+
+func Exit():
+	player.JUMP_BOOST_MULT = 1.0
+	super.Exit()

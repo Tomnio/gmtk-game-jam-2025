@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cj5mienam70nw"]
+[gd_scene load_steps=20 format=3 uid="uid://cj5mienam70nw"]
 
 [ext_resource type="Script" uid="uid://cnmmunb1kl38r" path="res://src/player.gd" id="1_0xtgo"]
 [ext_resource type="Texture2D" uid="uid://c6m57kq2a6e1n" path="res://Player/Katze.png" id="2_bltdr"]
@@ -7,9 +7,16 @@
 [ext_resource type="Script" uid="uid://c1qpdlo8cut1c" path="res://src/state_machine/jump.gd" id="4_6y88t"]
 [ext_resource type="Script" uid="uid://ycbk1ryxlt8n" path="res://src/state_machine/fall.gd" id="5_v5qrc"]
 [ext_resource type="Script" uid="uid://dh2nysnt3bd0" path="res://src/state_machine/run.gd" id="6_4rdrd"]
+[ext_resource type="Script" uid="uid://co64j21chowx0" path="res://src/state_machine/boost.gd" id="8_6y88t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hvfyp"]
 size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xtgo"]
+size = Vector2(10, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6y88t"]
+size = Vector2(14, 13)
 
 [sub_resource type="Animation" id="Animation_nvx6x"]
 length = 0.001
@@ -24,6 +31,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
 }
 
 [sub_resource type="Animation" id="Animation_0xtgo"]
@@ -48,7 +67,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8r765"]
 resource_name = "run"
-length = 0.9
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -63,16 +81,62 @@ tracks/0/keys = {
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_6y88t"]
+resource_name = "boost"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_v5qrc"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_4rdrd"]
+resource_name = "boosting"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [13, 12]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8r765"]
 _data = {
 &"RESET": SubResource("Animation_nvx6x"),
+&"boost": SubResource("Animation_6y88t"),
+&"boosting": SubResource("Animation_4rdrd"),
 &"fall": SubResource("Animation_0xtgo"),
 &"idle": SubResource("Animation_bltdr"),
+&"jump": SubResource("Animation_v5qrc"),
 &"run": SubResource("Animation_8r765")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xtgo"]
-size = Vector2(10, 6)
 
 [node name="Katze" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
@@ -85,6 +149,22 @@ shape = SubResource("RectangleShape2D_hvfyp")
 texture = ExtResource("2_bltdr")
 hframes = 4
 vframes = 4
+frame = 12
+
+[node name="Area2D" type="Area2D" parent="Sprite"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_0xtgo")
+
+[node name="BoostArea" type="Area2D" parent="Sprite"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/BoostArea"]
+position = Vector2(2, -3.5)
+shape = SubResource("RectangleShape2D_6y88t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -111,19 +191,16 @@ metadata/_custom_type_script = "uid://ycbk1ryxlt8n"
 script = ExtResource("6_4rdrd")
 metadata/_custom_type_script = "uid://dh2nysnt3bd0"
 
+[node name="Boost" type="Node" parent="StateMachine"]
+script = ExtResource("8_6y88t")
+metadata/_custom_type_script = "uid://co64j21chowx0"
+
 [node name="Label" type="Label" parent="StateMachine"]
 offset_left = -19.0
 offset_top = -38.0
 offset_right = 21.0
 offset_bottom = -15.0
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_0xtgo")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_kistefühler_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_kistefühler_2d_body_exited"]
+[connection signal="body_entered" from="Sprite/Area2D" to="." method="_on_kistefühler_2d_body_entered"]
+[connection signal="body_exited" from="Sprite/Area2D" to="." method="_on_kistefühler_2d_body_exited"]
+[connection signal="body_entered" from="Sprite/BoostArea" to="StateMachine/Boost" method="_on_boost_area_body_entered"]

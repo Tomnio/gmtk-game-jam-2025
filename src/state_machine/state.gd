@@ -36,3 +36,6 @@ func Update(_delta: float):
 
 func Physics_Update(_delta: float):
 	pass
+
+func overwrite_state(state_name: String):
+	Transitioned.emit(self, state_name)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://0k106as1ctwf"]
+
+[ext_resource type="Script" uid="uid://df6u5anc40mr8" path="res://Map/Components/Checkpoints/spawnpoint.gd" id="1_y7y4t"]
+[ext_resource type="Texture2D" uid="uid://178xpuipuyd3" path="res://Map/Components/Checkpoints/SpawnDoor.png" id="2_se8jp"]
+
+[node name="Spawnpoint" type="Node2D" groups=["Spawnpoint"]]
+script = ExtResource("1_y7y4t")
+
+[node name="SpawnDoor" type="Sprite2D" parent="."]
+texture = ExtResource("2_se8jp")

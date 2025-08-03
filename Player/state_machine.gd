@@ -14,6 +14,9 @@ func _ready() -> void:
 	reset_state()
 
 func reset_state():
+	if current_state:
+		current_state.Exit()
+	
 	if initial_state:
 		initial_state.Enter()
 		current_state = initial_state

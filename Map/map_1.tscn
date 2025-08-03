@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://d1hgif468uqfe"]
+[gd_scene load_steps=9 format=4 uid="uid://d1hgif468uqfe"]
 
 [ext_resource type="Script" uid="uid://rvu11pnx6b1n" path="res://Map/map_1.gd" id="1_j3f3d"]
 [ext_resource type="Texture2D" uid="uid://dysygd8ieqy13" path="res://Assets/framed_background.png" id="2_ykyq2"]
@@ -7,20 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://40hvg577syu0" path="res://Map/Components/Kiste/kiste.tscn" id="6_0nfuj"]
 [ext_resource type="PackedScene" uid="uid://dc4w106o4qh5t" path="res://Map/Tileset/tile_map_layer.tscn" id="7_yg31e"]
 [ext_resource type="PackedScene" uid="uid://dt6iikh4mdb2c" path="res://Map/Components/Checkpoints/goal.tscn" id="7_ykyq2"]
+[ext_resource type="PackedScene" uid="uid://0k106as1ctwf" path="res://Map/Components/Checkpoints/spawnpoint.tscn" id="8_yg31e"]
 
 [node name="Map_1" type="Node2D" groups=["level"]]
 script = ExtResource("1_j3f3d")
 
 [node name="FramedBackground" type="Sprite2D" parent="."]
 texture = ExtResource("2_ykyq2")
-
-[node name="Spawnpoint" type="ColorRect" parent="."]
-offset_left = -48.0
-offset_top = -24.0
-offset_right = -8.0
-offset_bottom = 16.0
-color = Color(1, 0.529412, 1, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="BuddySelect" parent="." instance=ExtResource("4_aog2r")]
 
@@ -44,7 +37,19 @@ autoplay = true
 position = Vector2(-80, 56)
 
 [node name="Goal" parent="." instance=ExtResource("7_ykyq2")]
-position = Vector2(-144, 56)
+position = Vector2(96, -16)
 
 [node name="TileMapLayer" parent="." instance=ExtResource("7_yg31e")]
-tile_map_data = PackedByteArray("AAD2/wUAAgAFAAIAAAD3/wUAAgAGAAIAAAD4/wUAAgAFAAIAAAD5/wUAAgAGAAMAAAD5/wYAAgAGAAMAAAD4/wYAAgAFAAMAAAD3/wYAAgAHAAMAAAD2/wYAAgAFAAMAAAD1/wYAAgAFAAMAAAD6/wYAAgAHAAMAAAD7/wYAAgAFAAMAAAD8/wYAAgAHAAMAAAD9/wYAAgAFAAMAAAD+/wYAAgAGAAMAAAD7/wUAAgAFAAIAAAD8/wUAAgAGAAIAAAD9/wUAAgAGAAMAAAD+/wUAAgAGAAMAAAD//wUAAgAGAAIAAAD6/wQAAgAGAAEAAAD7/wQAAgAFAAEAAAD8/wQAAgAGAAEAAAD9/wQAAgAGAAEAAAD5/wQAAgAGAAEAAAD4/wQAAgAGAAEAAAD3/wQAAgAGAAEAAAD2/wQAAgAFAAEAAAD6/wUAAgAGAAIAAAD//wQAAgAGAAEAAAD+/wQAAgAGAAEAAAAAAAUAAgAGAAMAAAAAAAYAAgAFAAMAAAABAAYAAgAFAAMAAAABAAUAAgAFAAIAAAACAAUAAgAGAAMAAAD//wYAAgAHAAMAAAAAAAQAAgAHAAIAAAABAAQAAgAGAAMAAAABAAMAAgAGAAEAAAACAAMAAgAGAAEAAAACAAQAAgAHAAIAAAADAAQAAgAGAAEAAAAEAAQAAgAGAAEAAAADAAUAAgAGAAMAAAACAAYAAgAGAAMAAAD//wMAAgAFAAMAAAAAAAMAAgAHAAEAAAAEAAUAAgAGAAMAAAAFAAQAAgAFAAMAAAAEAAMAAgAHAAEAAAADAAMAAgAGAAEAAAAFAAUAAgAHAAMAAAAGAAUAAgAFAAMAAAAFAAYAAgAHAAMAAAAEAAYAAgAGAAMAAAADAAYAAgAGAAMAAAA=")
+tile_map_data = PackedByteArray("AAD2/wUAAgAFAAMAAAAJAAUAAgAFAAMAAAAEAAUAAgAFAAMAAAAGAAUAAgAFAAMAAAAHAAUAAgAHAAMAAAAAAAUAAgAFAAMAAAD+/wUAAgAFAAMAAAD8/wUAAgAFAAMAAAD6/wUAAgAFAAMAAAD4/wUAAgAFAAMAAAAIAAUAAgAFAAMAAAAFAAUAAgAHAAMAAAADAAUAAgAHAAMAAAACAAUAAgAFAAMAAAABAAUAAgAHAAMAAAD//wUAAgAHAAMAAAD9/wUAAgAHAAMAAAD7/wUAAgAHAAMAAAD5/wUAAgAHAAMAAAD3/wUAAgAHAAMAAAAJAAYAAgAHAAMAAAAIAAYAAgAGAAMAAAAHAAYAAgAGAAMAAAAGAAYAAgAGAAMAAAAFAAYAAgAGAAMAAAAEAAYAAgAGAAMAAAADAAYAAgAGAAMAAAACAAYAAgAGAAMAAAABAAYAAgAGAAMAAAAAAAYAAgAGAAMAAAD//wYAAgAGAAMAAAD+/wYAAgAGAAMAAAD9/wYAAgAGAAMAAAD8/wYAAgAGAAMAAAD7/wYAAgAGAAMAAAD6/wYAAgAGAAMAAAD5/wYAAgAGAAMAAAD4/wYAAgAGAAMAAAD3/wYAAgAGAAMAAAD2/wYAAgAFAAMAAAA=")
+
+[node name="SpawnpointFliege" parent="." instance=ExtResource("8_yg31e")]
+position = Vector2(-120, 64)
+buddy_name = "Fliege"
+
+[node name="SpawnpointKatze" parent="." instance=ExtResource("8_yg31e")]
+position = Vector2(-48, 64)
+buddy_name = "Katze"
+
+[node name="SpawnpointFrosch" parent="." instance=ExtResource("8_yg31e")]
+position = Vector2(24, 64)
+buddy_name = "Frosch"

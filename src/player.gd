@@ -13,7 +13,8 @@ var inputs : Dictionary:
 			return {"buttons": {}, "movement": Vector2.ZERO}
 
 var SPEED := 150.0
-var JUMP_VELOCITY = -250
+var JUMP_VELOCITY := -250
+var JUMP_BOOST_MULT := 1.0
 
 var per_frame_input_array : Array
 
@@ -57,6 +58,7 @@ var moves := {
 	"up": 0,
 	"down": 0,
 	"accept": 0,
+	"ability": 0,
 	"left": 0,
 	"right": 0,
 }

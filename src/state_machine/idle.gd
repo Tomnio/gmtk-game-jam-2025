@@ -12,4 +12,7 @@ func Update(_delta):
 	if inputs.has("movement") and inputs["movement"].x:
 		Transitioned.emit(self, "run")
 	
+	if inputs.has("buttons") and inputs["buttons"].has("ability") and inputs["buttons"]["ability"]:
+		Transitioned.emit(self, "boost")
+	
 	super.Update(_delta)
