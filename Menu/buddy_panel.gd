@@ -9,7 +9,7 @@ var level
 func _ready() -> void:
 	texture.texture = buddy_texture
 	button.text = buddy_name
-	level = get_tree().get_first_node_in_group("level")
+	level = get_parent().get_parent().get_parent().get_parent().get_parent()
 
 func _on_button_pressed() -> void:
 	Game.start_run_as(buddy_name.to_lower())

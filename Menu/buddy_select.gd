@@ -7,12 +7,15 @@ class_name BuddySelect
 @onready var katze_texture := preload("res://Player/Katze.png")
 @onready var fliege_texture := preload("res://Player/Fliege.png")
 @onready var frosch_texture := preload("res://Player/Frosch.png")
+@onready var giraffe_texture := preload("res://Player/giraffe.png")
 
 var buddy_texture_dict : Dictionary
 
 func _ready() -> void:
+	#nich vergessen unten auch ins array !!
 	buddy_texture_dict = {
 	"katze": katze_texture,
+	"giraffe": giraffe_texture,
 	"fliege": fliege_texture,
 	"frosch": frosch_texture
 	}
@@ -24,7 +27,7 @@ func _process(delta: float) -> void:
 		get_tree().get_first_node_in_group("level").escape_label.hide()
 
 func load_buddies():
-	var buddy_names = ["katze", "fliege", "frosch"]
+	var buddy_names = ["katze", "fliege", "frosch", "giraffe"]
 	for buddy_name in buddy_names:
 		add_buddy_by_name(buddy_name)
 

@@ -23,7 +23,10 @@ func spawn_player(player: Player):
 	
 	for spawnpoint in spawnpoints:
 		if player.name.to_lower() == spawnpoint.buddy_name.to_lower():
-			self.add_child(player)
+			print("okay garmin")
+			print(self.is_ancestor_of(player))
+			if !self.is_ancestor_of(player):
+				self.add_child(player)
 			player.get_node("StateMachine").reset_state()
 			player.position = spawnpoint.position
 

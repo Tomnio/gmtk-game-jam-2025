@@ -26,11 +26,12 @@ func start_run_as(buddy_name):
 	for buddy in BuddyHandler.get_buddies():
 		if buddy.name.to_lower() == buddy_name:
 			buddy.active = true
+			buddy.clear_recording()
 			level.spawn_player(buddy)
 		else:
 			buddy.active = false
-		if buddy.per_frame_input_array.size() > 0:
-			level.spawn_player(buddy)
+			if buddy.per_frame_input_array.size() > 0:
+				level.spawn_player(buddy)
 
 #
 #

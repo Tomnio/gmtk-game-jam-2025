@@ -1,31 +1,31 @@
-[gd_scene load_steps=8 format=4 uid="uid://b4jgtd3oers6y"]
+[gd_scene load_steps=8 format=4 uid="uid://d3ssypt4kjrd3"]
 
-[ext_resource type="Script" uid="uid://b0guwunxu6x3m" path="res://Map/map_2.gd" id="1_honm8"]
-[ext_resource type="Texture2D" uid="uid://dysygd8ieqy13" path="res://Assets/framed_background.png" id="2_nof0t"]
-[ext_resource type="PackedScene" uid="uid://h447752em1yi" path="res://Map/Tileset/tilemap_layer.tscn" id="3_xbo3e"]
-[ext_resource type="PackedScene" uid="uid://0k106as1ctwf" path="res://Map/Components/Checkpoints/spawnpoint.tscn" id="4_a6was"]
-[ext_resource type="PackedScene" uid="uid://c3jxqd0g7vg8n" path="res://Menu/buddy_select.tscn" id="4_xbo3e"]
-[ext_resource type="AudioStream" uid="uid://dwb6vuax0am5j" path="res://Assets/Sounds/Music/dark_forest.wav" id="5_a6was"]
-[ext_resource type="PackedScene" uid="uid://dt6iikh4mdb2c" path="res://Map/Components/Checkpoints/goal.tscn" id="7_3uhmi"]
+[ext_resource type="Script" uid="uid://q3wuh28crj6k" path="res://Map/map_3.gd" id="1_l6yny"]
+[ext_resource type="Texture2D" uid="uid://dysygd8ieqy13" path="res://Assets/framed_background.png" id="2_y644h"]
+[ext_resource type="PackedScene" uid="uid://h447752em1yi" path="res://Map/Tileset/tilemap_layer.tscn" id="3_q1ccr"]
+[ext_resource type="PackedScene" uid="uid://0k106as1ctwf" path="res://Map/Components/Checkpoints/spawnpoint.tscn" id="4_fa8q2"]
+[ext_resource type="PackedScene" uid="uid://c3jxqd0g7vg8n" path="res://Menu/buddy_select.tscn" id="5_kcu74"]
+[ext_resource type="AudioStream" uid="uid://dwb6vuax0am5j" path="res://Assets/Sounds/Music/dark_forest.wav" id="6_ik0vl"]
+[ext_resource type="PackedScene" uid="uid://dt6iikh4mdb2c" path="res://Map/Components/Checkpoints/goal.tscn" id="7_vpltv"]
 
-[node name="Map_2" type="Node2D" groups=["level"]]
-script = ExtResource("1_honm8")
+[node name="map_3" type="Node2D"]
+script = ExtResource("1_l6yny")
 
 [node name="FramedBackground" type="Sprite2D" parent="."]
-texture = ExtResource("2_nof0t")
+texture = ExtResource("2_y644h")
 
-[node name="TilemapLayer" parent="." instance=ExtResource("3_xbo3e")]
+[node name="TilemapLayer" parent="." instance=ExtResource("3_q1ccr")]
 tile_map_data = PackedByteArray("AAAJAP7/AAABAAIAAAAJAP3/AAABAAIAAAAJAPz/AAABAAIAAAAJAPv/AAABAAIAAAAJAPr/AAACAAMAAAD3//r/AAACAAMAAAD4//r/AAACAAMAAAD5//r/AAACAAMAAAD6//r/AAACAAMAAAD7//r/AAACAAMAAAD8//r/AAACAAMAAAD9//r/AAACAAMAAAD+//r/AAACAAMAAAD///r/AAACAAMAAAADAPr/AAACAAMAAAAEAPr/AAACAAMAAAAFAPr/AAACAAMAAAAGAPr/AAACAAMAAAAHAPr/AAACAAMAAAD2/wQAAAADAAIAAAD2/wMAAAADAAIAAAD2/wIAAAADAAIAAAD2/wEAAAADAAIAAAD2/wAAAAADAAIAAAD2//v/AAADAAIAAAD2//z/AAADAAIAAAD2//3/AAADAAIAAAD2//7/AAADAAIAAAD2////AAADAAIAAAD2//r/AAACAAMAAAD2/wUAAAACAAEAAAD3/wUAAAACAAEAAAD4/wUAAAACAAEAAAD5/wUAAAACAAEAAAD6/wUAAAACAAEAAAD7/wUAAAACAAEAAAD8/wUAAAACAAEAAAD9/wUAAAACAAEAAAD+/wUAAAACAAEAAAD//wUAAAACAAEAAAAAAAUAAAACAAEAAAABAAUAAAACAAEAAAACAAUAAAACAAEAAAADAAUAAAACAAEAAAAEAAUAAAACAAEAAAAFAAUAAAACAAEAAAAGAAUAAAACAAEAAAAHAAUAAAACAAEAAAAIAAUAAAACAAEAAAAJAAUAAAACAAEAAAAJAP//AAABAAIAAAAJAAAAAAABAAIAAAAJAAEAAAABAAIAAAAJAAIAAAABAAIAAAAJAAMAAAABAAIAAAAJAAQAAAABAAIAAAAAAPr/AAACAAMAAAABAPr/AAACAAMAAAACAPr/AAACAAMAAAAIAP//AAANAAIAAAAIAAAAAAANAAIAAAAIAAEAAAANAAIAAAAIAAIAAAANAAIAAAAIAAMAAAANAAIAAAAIAAQAAAANAAIAAAAHAAQAAAAPAAMAAAAGAAQAAAAOAAMAAAAFAAQAAAANAAMAAAAEAAQAAAAPAAMAAAADAAQAAAAOAAMAAAACAAQAAAANAAMAAAACAAMAAAANAAIAAAACAAIAAAACABIAAAADAAIAAAAOAAEAAAAFAAAAAAANAAEAAAAEAAEAAAANAAEAAAADAAMAAAAOAAIAAAAEAAIAAAAPAAEAAAAFAAEAAAAOAAEAAAAFAAIAAAAOAAIAAAAEAAMAAAAPAAIAAAAGAAEAAAAPAAEAAAAHAAAAAAAPAAEAAAAHAAEAAAAPAAIAAAAHAAIAAAAPAAMAAAAGAAIAAAAPAAIAAAAGAAMAAAAPAAMAAAAFAAMAAAAOAAMAAAAHAAMAAAAPAAIAAAAIAPr/AAACAAMAAAD+/wMAAAAFAA0AAAD4/wMAAAABAAkAAAD7/wAAAAAFAAUAAAD4/wAAAAADABIAAAD7/wMAAAADABIAAAD4//3/AAABAAUAAAD9/wIAAAANAA0AAAD9/wMAAAANAA4AAAD9/wQAAAANAA8AAAD+/wIAAAAOAA0AAAD+/wQAAAAOAA8AAAD//wIAAAAPAA0AAAD//wMAAAAPAA4AAAD//wQAAAAPAA8AAAD3//v/AAACABIAAAD4//v/AAACABIAAAD5//v/AAACABIAAAD6//v/AAACABIAAAD7//v/AAACABIAAAD8//v/AAACABIAAAD9//v/AAADABIAAAD9//z/AAADABIAAAD9//3/AAANAAUAAAD///3/AAACABIAAAD9//7/AAADABIAAAD+//v/AAADABIAAAD///v/AAADABIAAAD///z/AAADABIAAAD7//z/AAADABIAAAD6//z/AAADABIAAAD6//3/AAADABIAAAD6//7/AAADABIAAAD7//7/AAADABIAAAD8//7/AAADABIAAAD8//3/AAADABIAAAD8//z/AAADABIAAAD7//3/AAADABIAAAD3////AAADABIAAAD4////AAADABIAAAD5////AAADABIAAAD5/wAAAAADABIAAAD4/wEAAAADABIAAAD3/wAAAAADABIAAAD3/wEAAAADABIAAAD5/wEAAAADABIAAAD6/wIAAAADABIAAAD6/wMAAAADABIAAAD6/wQAAAADABIAAAD7/wQAAAADABIAAAD7/wIAAAADABIAAAD8/wIAAAADABIAAAD8/wMAAAADABIAAAD8/wQAAAADABIAAAAFAP3/AAAJAAkAAAADAPv/AAACABIAAAAEAPv/AAACABIAAAAFAPv/AAACABIAAAAGAPv/AAACABIAAAAHAPv/AAACABIAAAAIAPv/AAACABIAAAAIAPz/AAACABIAAAAIAP3/AAACABIAAAAIAP7/AAACABIAAAAHAP3/AAACABIAAAAHAPz/AAACABIAAAAHAP7/AAACABIAAAAHAP//AAACABIAAAAGAP//AAACABIAAAAFAP//AAACABIAAAAGAAAAAAACABIAAAAAAAIAAAACABIAAAABAAIAAAACABIAAAABAAMAAAACABIAAAABAAQAAAACABIAAAAAAAQAAAACABIAAAAAAAMAAAACABIAAAD9/wEAAAACABIAAAD+/wEAAAACABIAAAADAAEAAAACABIAAAAAAAEAAAAKAA4AAAD//wAAAAAJAA0AAAD//wEAAAACABIAAAD+/wAAAAACABIAAAD9/wAAAAACABIAAAD9////AAACABIAAAD+////AAACABIAAAD///7/AAACABIAAAADAAAAAAACABIAAAD/////AAACABIAAAAEAP7/AAACABIAAAAEAP//AAACABIAAAACAPv/AAACABIAAAABAPv/AAACABIAAAAAAPz/AAACABIAAAD+//3/AAACABIAAAAAAPv/AAACABIAAAA=")
 
-[node name="SpawnpointKatze" parent="." instance=ExtResource("4_a6was")]
+[node name="SpawnpointKatze" parent="." instance=ExtResource("4_fa8q2")]
 position = Vector2(-60, 64)
 buddy_name = "Katze"
 
-[node name="SpawnpointFliege" parent="." instance=ExtResource("4_a6was")]
+[node name="SpawnpointFliege" parent="." instance=ExtResource("4_fa8q2")]
 position = Vector2(-120, 63)
 buddy_name = "Katze"
 
-[node name="BuddySelect" parent="." instance=ExtResource("4_xbo3e")]
+[node name="BuddySelect" parent="." instance=ExtResource("5_kcu74")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -39,9 +39,9 @@ theme_override_font_sizes/font_size = 9
 text = "press esc to show buddy list"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_a6was")
+stream = ExtResource("6_ik0vl")
 volume_db = -20.0
 autoplay = true
 
-[node name="Goal" parent="." instance=ExtResource("7_3uhmi")]
-position = Vector2(-17, 23)
+[node name="Goal" parent="." instance=ExtResource("7_vpltv")]
+position = Vector2(118, -8)

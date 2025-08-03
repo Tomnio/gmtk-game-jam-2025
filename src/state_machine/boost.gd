@@ -5,7 +5,7 @@ class_name Boost
 
 func Enter():
 	player.velocity = Vector2.ZERO
-	boost_area.monitoring = true
+	activate_boost()
 	super.Enter()
 
 func Update(_delta):
@@ -18,7 +18,7 @@ func Update(_delta):
 	super.Update(_delta)
 
 func Exit():
-	boost_area.monitoring = false
+	deactivate_boost()
 	super.Exit()
 
 func _on_boost_area_body_entered(body: Node2D) -> void:
@@ -26,3 +26,11 @@ func _on_boost_area_body_entered(body: Node2D) -> void:
 		animation_player.play("boosting")
 		body.JUMP_BOOST_MULT = 1.4
 		body.get_node("StateMachine").current_state.overwrite_state("jump")
+
+func activate_boost():
+	boost_area.monitoring = true
+	pass
+
+func deactivate_boost():
+	boost_area.monitoring = false
+	pass

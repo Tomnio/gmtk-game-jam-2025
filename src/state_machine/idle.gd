@@ -16,3 +16,12 @@ func Update(_delta):
 		Transitioned.emit(self, "boost")
 	
 	super.Update(_delta)
+
+func boost_buddy():
+		Transitioned.emit(self, "boost")
+
+
+func _on_boost_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player") and body.name.to_lower() != "giraffe":
+		body.JUMP_BOOST_MULT = 1.2
+		body.get_node("StateMachine").current_state.overwrite_state("jump")

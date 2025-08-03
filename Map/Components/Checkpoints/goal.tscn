@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt6iikh4mdb2c"]
+[gd_scene load_steps=4 format=3 uid="uid://dt6iikh4mdb2c"]
 
 [ext_resource type="Script" uid="uid://c3cixjvbvxpuo" path="res://Map/Components/Checkpoints/goal.gd" id="1_b7tj2"]
+[ext_resource type="Texture2D" uid="uid://uycoilmwrkk7" path="res://Map/Components/Checkpoints/Fahne.png" id="2_6nu4n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0c1xo"]
+size = Vector2(14, 16)
 
 [node name="Goal" type="Node2D"]
 script = ExtResource("1_b7tj2")
@@ -12,5 +14,8 @@ script = ExtResource("1_b7tj2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fahne"]
 shape = SubResource("RectangleShape2D_0c1xo")
 debug_color = Color(0.0630634, 0.649779, 1.92523e-07, 0.42)
+
+[node name="FahneSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_6nu4n")
 
 [connection signal="body_entered" from="Fahne" to="." method="_on_fahne_body_entered"]
